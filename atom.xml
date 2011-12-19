@@ -4,7 +4,7 @@
   <title><![CDATA[Salogs]]></title>
   <link href="http://yousri.github.com/salogs/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-19T23:15:51+08:00</updated>
+  <updated>2011-12-19T23:20:08+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -20,11 +20,15 @@
     <id>http://yousri.github.com/salogs/blog/performance-monitoring-and-analysis-tools</id>
     <content type="html"><![CDATA[<h2>一、系统级别性能分析工具</h2>
 
-<p>这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如：
-* 借助vmstat、sar、iostat检测是否是CPU瓶颈;
-* 借助free、vmstat检测是否是内存瓶颈;
-* 借助iostat检测是否是磁盘I/O瓶颈;
-* 借助netstat检测是否是网络带宽瓶颈;</p>
+<p>这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如：</p>
+
+<ul>
+<li>借助vmstat、sar、iostat检测是否是CPU瓶颈;</li>
+<li>借助free、vmstat检测是否是内存瓶颈;</li>
+<li>借助iostat检测是否是磁盘I/O瓶颈;</li>
+<li>借助netstat检测是否是网络带宽瓶颈;</li>
+</ul>
+
 
 <h2>top</h2>
 
