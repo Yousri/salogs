@@ -4,7 +4,7 @@
   <title><![CDATA[Salogs]]></title>
   <link href="http://yousri.github.com/salogs/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-19T22:58:03+08:00</updated>
+  <updated>2011-12-19T23:01:05+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -263,10 +263,7 @@ avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每�
 
 <h2>Explain</h2>
 
-<ul>
-<li>Explain Select &#8230;.</li>
-</ul>
-
+<p>Explain Select &#8230;.</p>
 
 <p>执行后包含的信息:ID、Select_type、Table、Type、Possible_keys、Key、Key_len、Ref、Rows、Extra</p>
 
