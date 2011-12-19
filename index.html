@@ -9,10 +9,11 @@
   <meta name="author" content="Yousri">
 
   
-  <meta name="description" content="一、系统级别性能分析工具 这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如： 借助vmstat、sar、iostat检测是否是CPU瓶颈;
-借助free、vmstat检测是否是内存瓶颈;
-借助iostat检测是否是磁盘I/O瓶颈;
-借助netstat检测是否是网络带宽瓶颈 &hellip;">
+  <meta name="description" content="一、系统级别性能分析工具 这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如：
+* 借助vmstat、sar、iostat检测是否是CPU瓶颈;
+* 借助free、vmstat检测是否是内存瓶颈;
+* 借助iostat检测是否是磁盘I/O瓶颈;
+* &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,15 +100,11 @@
 
   <div class="entry-content"><h2>一、系统级别性能分析工具</h2>
 
-<p>这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如：</p>
-
-<ul>
-<li>借助vmstat、sar、iostat检测是否是CPU瓶颈;</li>
-<li>借助free、vmstat检测是否是内存瓶颈;</li>
-<li>借助iostat检测是否是磁盘I/O瓶颈;</li>
-<li>借助netstat检测是否是网络带宽瓶颈;</li>
-</ul>
-
+<p>这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如：
+* 借助vmstat、sar、iostat检测是否是CPU瓶颈;
+* 借助free、vmstat检测是否是内存瓶颈;
+* 借助iostat检测是否是磁盘I/O瓶颈;
+* 借助netstat检测是否是网络带宽瓶颈;</p>
 
 <h2>top</h2>
 
@@ -155,66 +152,70 @@ Swap:      8193108     720552    7472556
 <p>[yousri@jmxc ~]$vmstat 5 5</p>
 
 <ul>
-<li><p>Procs：运行及等待中的进程数
-{{{
-  -r:运行的和等待(CPU时间片)运行的进程数，这个值也可以判断是否需要增加CPU(长期大于1)
-  -b:处于不可中断状态的进程数，常见的情况是由IO引起的
-}}}</p></li>
-<li><p>Memory：内存使用比例包括交换内存、读写缓存及应用程序的cache情况。
-{{{
-  -swpd: 切换到交换内存上的内存(默认以KB为单位)
+<li><p>Procs：运行及等待中的进程数</p>
+
+<p>  -r:运行的和等待(CPU时间片)运行的进程数，这个值也可以判断是否需要增加CPU(长期大于1)
+  -b:处于不可中断状态的进程数，常见的情况是由IO引起的</p></li>
+<li><p>Memory：内存使用比例包括交换内存、读写缓存及应用程序的cache情况。</p>
+
+<p>  -swpd: 切换到交换内存上的内存(默认以KB为单位)
   如果 swpd 的值不为0，或者还比较大，比如超过100M了，但是 si, so 的值长期为 0，这种情况我们可以不用担心，不会影响系统性能。
   -free: 空闲的物理内存
   -buff: 作为buffer cache的内存，对块设备的读写进行缓冲
   -cache: 作为page cache的内存, 文件系统的cache
-  如果 cache 的值大的时候，说明cache住的文件数多，如果频繁访问到的文件都能被cache住，那么磁盘的读IO bi 会非常小。
-}}}</p></li>
-<li><p>Swap：交换内存使用情况
-{{{
-  -si: 交换内存使用，由磁盘调入内存
+  如果 cache 的值大的时候，说明cache住的文件数多，如果频繁访问到的文件都能被cache住，那么磁盘的读IO bi 会非常小。</p></li>
+<li><p>Swap：交换内存使用情况</p>
+
+<p>  -si: 交换内存使用，由磁盘调入内存
   -so: 交换内存使用，由内存调入磁盘
-  内存够用的时候，这2个值都是0，如果这2个值长期大于0时，系统性能会受到影响。磁盘IO和CPU资源都会被消耗。
-}}}
-  我发现有些朋友看到空闲内存(free)很少或接近于0时，就认为内存不够用了，实际上不能光看这一点的，还要结合si,so，如果free很少，但是si,so也很少(大多时候是0)，那么不用担心，系统性能这时不会受到影响的。</p></li>
-<li><p>I/O：磁盘读写数据负载情况
-{{{
-  -bi: 从块设备读入的数据总量(读磁盘) (KB/s)，
-  -bo: 写入到块设备的数据总理(写磁盘) (KB/s)
-}}}
-  随机磁盘读写的时候，这2个 值越大（如超出1M），能看到CPU在IO等待的值也会越大</p></li>
-<li><p>System：系统读写上下午切换次数情况
-{{{
-  -in: 每秒产生的中断次数
-  -cs: 每秒产生的上下文切换次数
-}}}
-  上面这2个值越大，会看到由内核消耗的CPU时间会越多</p></li>
-<li><p>CPU：CPU使用情况：包括用户应用、系统本身以及I/O读写等待消耗的各个CPU消耗比例。
-{{{
-  -us: 用户进程消耗的CPU时间百分比
+  内存够用的时候，这2个值都是0，如果这2个值长期大于0时，系统性能会受到影响。磁盘IO和CPU资源都会被消耗。</p></li>
+</ul>
+
+
+<p>我发现有些朋友看到空闲内存(free)很少或接近于0时，就认为内存不够用了，实际上不能光看这一点的，还要结合si,so，如果free很少，但是si,so也很少(大多时候是0)，那么不用担心，系统性能这时不会受到影响的。</p>
+
+<ul>
+<li><p>I/O：磁盘读写数据负载情况</p>
+
+<p>  -bi: 从块设备读入的数据总量(读磁盘) (KB/s)，
+  -bo: 写入到块设备的数据总理(写磁盘) (KB/s)</p></li>
+</ul>
+
+
+<p>随机磁盘读写的时候，这2个 值越大（如超出1M），能看到CPU在IO等待的值也会越大</p>
+
+<ul>
+<li><p>System：系统读写上下午切换次数情况</p>
+
+<p>  -in: 每秒产生的中断次数
+  -cs: 每秒产生的上下文切换次数</p></li>
+</ul>
+
+
+<p>上面这2个值越大，会看到由内核消耗的CPU时间会越多</p>
+
+<ul>
+<li><p>CPU：CPU使用情况：包括用户应用、系统本身以及I/O读写等待消耗的各个CPU消耗比例。</p>
+
+<p>  -us: 用户进程消耗的CPU时间百分比
   us 的值比较高时，说明用户进程消耗的CPU时间多，但是如果长期超过50% 的使用，那么我们就该考虑优化程序算法或者进行加速了(比如 PHP/Perl)
   -sy: 内核进程消耗的CPU时间百分比
   sy 的值高时，说明系统内核消耗的CPU资源多，这并不是良性的表现，我们应该检查原因。
   -wa: IO等待消耗的CPU时间百分比
   wa 的值高时，说明IO等待比较严重，这可能是由于磁盘大量作随机访问造成，也有可能是磁盘的带宽出现瓶颈(块操作)。
-  -id: CPU处在空闲状态时间百分比
-}}}</p></li>
-<li><p>情景分析：这个vmstat的输出那些信息值得关注？</p>
-
-<h1>-Procs r: 运行的进程比较多，系统很繁忙</h1>
-
-<h1>-Io bo: 磁盘写的数据量稍大，如果是大文件的写，10M以内基本不用担心，如果是小文件写2M以内基本正常</h1>
-
-<h1>Cpu us: 持续大于50，服务高峰期可以接受</h1>
-
-<h1>Cpu wa: 稍微有些高</h1>
-
-<h1>Cpu id:持续小于50，服务高峰期可以接受</h1></li>
+  -id: CPU处在空闲状态时间百分比</p></li>
+<li><p>情景分析：这个vmstat的输出那些信息值得关注？
+ -Procs r: 运行的进程比较多，系统很繁忙
+ -Io bo: 磁盘写的数据量稍大，如果是大文件的写，10M以内基本不用担心，如果是小文件写2M以内基本正常
+ Cpu us: 持续大于50，服务高峰期可以接受
+ Cpu wa: 稍微有些高
+ Cpu id:持续小于50，服务高峰期可以接受</p></li>
 </ul>
 
 
-<p>=== iostat ===
-[yousri@jmxc ~]$iostat -x 5
-{{{</p>
+<h2>iostat</h2>
+
+<p>[yousri@jmxc ~]$iostat -x 5</p>
 
 <pre><code>rrqm/s: 每秒进行 merge 的读操作数目。即 delta(rmerge)/s
 wrqm/s: 每秒进行 merge 的写操作数目。即 delta(wmerge)/s
@@ -229,13 +230,10 @@ avgqu-sz:   平均I/O队列长度。即 delta(aveq)/s/1000 (因为aveq的单位�
 await:      平均每次设备I/O操作的等待时间 (毫秒)。即 delta(ruse+wuse)/delta(rio+wio)
 svctm:      平均每次设备I/O操作的服务时间 (毫秒)。即 delta(use)/delta(rio+wio)
 %util:      一秒中有百分之多少的时间用于 I/O 操作，或者说一秒中有多少时间 I/O 队列是非空的。即 delta(use)/s/1000 (因为use的单位为毫秒)
-</code></pre>
 
-<p>}}}</p>
 
-<p>{{{</p>
 
-<pre><code>如果 %util 接近 100%，说明产生的I/O请求太多，I/O系统已经满负荷，该磁盘可能存在瓶颈。
+如果 %util 接近 100%，说明产生的I/O请求太多，I/O系统已经满负荷，该磁盘可能存在瓶颈。
 idle小于70% IO压力就较大了,一般读取速度有较多的wait。
 同时可以结合vmstat 查看查看b参数(等待资源的进程数)和wa参数(IO等待所占用的CPU时间的百分比,高过30%时IO压力高) 
 另外 await 的参数也要多和 svctm 来参考。差的过高就一定有 IO 的问题。 
@@ -245,17 +243,17 @@ avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每�
 并发请求的数量：并发= (r/s+w/s)*(svctm/1000)
 </code></pre>
 
-<p>}}}</p>
+<h2>mpstat</h2>
 
-<p>=== mpstat ===
-mpstat命令可用于监测一个多CPU系统中每个可用CPU的情况，同时也可以像vmstat命令那样使用参数进行一定频率的采样结果的监测。</p>
+<p>mpstat命令可用于监测一个多CPU系统中每个可用CPU的情况，同时也可以像vmstat命令那样使用参数进行一定频率的采样结果的监测。</p>
 
-<p>=== pmap ===
-pmap命令可以显示进程的内存映射，可以用于找出造成内存瓶颈的原因：pmap -d pid</p>
+<h2>pmap</h2>
 
-<p>=== sar ===
-sar可视为是iostat及vmstat为一体的工具，其命令行常用格式:sar [options] [-A] [-o file] t n 注：n和t分别代表采样次数及时间间隔;-o file表示将命令行输出结果以二进制保存在文件中;options为命令行选项，常用包括有：
-{{{</p>
+<p>pmap命令可以显示进程的内存映射，可以用于找出造成内存瓶颈的原因：pmap -d pid</p>
+
+<h2>sar</h2>
+
+<p>sar可视为是iostat及vmstat为一体的工具，其命令行常用格式:sar [options] [-A] [-o file] t n 注：n和t分别代表采样次数及时间间隔;-o file表示将命令行输出结果以二进制保存在文件中;options为命令行选项，常用包括有：</p>
 
 <pre><code>-A：所有报告的总和;
 -u：CPU利用率;
@@ -271,26 +269,21 @@ sar可视为是iostat及vmstat为一体的工具，其命令行常用格式:sar 
 -w：系统交换活动;
 </code></pre>
 
-<p>}}}</p>
+<h2>uptime</h2>
 
-<p>=== uptime ===
-uptime 快捷的查看服务器运行时间、在线用户数、系统即时、每五/十五分钟的平均负载情况：
-{{{</p>
+<p>uptime 快捷的查看服务器运行时间、在线用户数、系统即时、每五/十五分钟的平均负载情况：</p>
 
 <pre><code>[yousri@jmxc ~]$ uptime
  10:35:27 up 242 days, 17:07,  1 user,  load average: 0.13, 0.07, 0.01
 </code></pre>
 
-<p>}}}</p>
-
-<p>=== strace ===</p>
+<h2>strace</h2>
 
 <p>Strace：用于跟踪进程执行时的系统调用和所接收的信号。</p>
 
 <p>在Linux世界，进程不能直接访问硬件设备，当进程需要访问硬件设备(比如读取磁盘文件，接收网络数据等等)时，必须由用户态模式切换至内核态模式，通过系统调用访问硬件设备。strace可以跟踪到一个进程产生的系统调用,包括参数，返回值，执行消耗的时间。</p>
 
-<p>使用参数：
-{{{</p>
+<p>使用参数：</p>
 
 <pre><code>-p  跟踪指定的进程
 -f  跟踪由fork子进程系统调用
@@ -305,20 +298,19 @@ uptime 快捷的查看服务器运行时间、在线用户数、系统即时、�
 -e  expr     输出过滤器，通过表达式，可以过滤出掉你不想要输出
 </code></pre>
 
-<p>}}}</p>
+<h2>二、网络分析定位命令工具</h2>
 
-<p>== 网络分析定位命令工具 ==</p>
+<h2>ping</h2>
 
-<p>=== ping ===</p>
+<h2>traceroute</h2>
 
-<p>=== traceroute ===</p>
+<h2>netstat</h2>
 
-<p>=== netstat ===
-服务连接状态：netstat -nat|awk &#8216;{print $6}|sort|uniq -c|sort -rn</p>
+<p>服务连接状态：netstat -nat|awk &#8216;{print $6}|sort|uniq -c|sort -rn</p>
 
-<p>=== mtr ===
-最初通常只是使用ping判断网络丢包情况，再结合traceroute跟踪路由走向，直到后来才发现原来linux下有个更好的具备这两者功能的网络分析判断工具，可以说是结合了ping/nslookup/traceroute为一体来判断网络的相关特性，它即是mtr。最常用到的参数为：
-{{{</p>
+<h2>mtr</h2>
+
+<p>最初通常只是使用ping判断网络丢包情况，再结合traceroute跟踪路由走向，直到后来才发现原来linux下有个更好的具备这两者功能的网络分析判断工具，可以说是结合了ping/nslookup/traceroute为一体来判断网络的相关特性，它即是mtr。最常用到的参数为：</p>
 
 <pre><code>mtr -n -r -c 15 ip
 -n no-dns 不对ip地址做域名解析
@@ -326,10 +318,7 @@ uptime 快捷的查看服务器运行时间、在线用户数、系统即时、�
 -c 设置每秒发送数据包数量
 </code></pre>
 
-<p>}}}</p>
-
-<p>结果总共包括八列数据分别是：
-{{{</p>
+<p>结果总共包括八列数据分别是：</p>
 
 <pre><code>第一列：ip或域名;
 第二列：设置每秒发送数据包的数量;
@@ -341,65 +330,61 @@ uptime 快捷的查看服务器运行时间、在线用户数、系统即时、�
 第八列：标准偏差;
 </code></pre>
 
-<p>}}}</p>
+<h2>NC</h2>
 
-<p>=== nc ===
-nc全程<code>NetCat</code> 号称是网络工具中的“瑞士军刀”</p>
+<p>nc全程<code>NetCat</code> 号称是网络工具中的“瑞士军刀”</p>
 
-<p>=== nmap ===
-http://xukaizijian.blog.163.com/blog/static/1704331192011011101745336/</p>
+<h2>nmap</h2>
 
-<p>== Mysql性能瓶颈分析定位工具命令 ==
-=== show full processlist ===</p>
+<p>http://xukaizijian.blog.163.com/blog/static/1704331192011011101745336/</p>
 
-<p>=== show slow puery ===</p>
+<h2>三、Mysql性能瓶颈分析定位工具命令</h2>
 
-<p>=== Explain ===
-* Explain Select &#8230;.</p>
+<h2>show full processlist</h2>
 
-<p>执行后包含的信息:ID、Select_type、Table、Type、Possible_keys、Key、Key_len、Ref、Rows、Extra</p>
+<h2>show slow puery</h2>
 
-<h1>Select_type：表示查询每个select子句的类型（简单或复杂）</h1>
+<h2>Explain</h2>
 
 <ul>
-<li>SIMPLE:查询中不包含子查询或union;</li>
-<li>PRIMARY:查询中若包含任何复杂的子部分;</li>
-<li>SUBQUERY:在select或where列表中包含子查询;</li>
-<li>DERIVED:在from列表中包含子查询;</li>
-<li>UNION</li>
-<li>UNION RESULT
-
-<h1>Type: 表示Mysql在表中找到所需行的方式，又称“访问类型”，常见类型由差到优依次如下：ALL  index  range  ref  eq_ref  const,system  NULL</h1></li>
-<li>ALL:Full Table Scan   Mysql需遍历全表找到匹配的行;</li>
-<li>index:Full index Scan index与all的区别在于其只遍历索引查询（使用到索引）;</li>
-<li>range: 索引范围扫描，对索引的扫描开始于某一点，返回匹配值域的行，常见于between/</>等的查询;</li>
-<li>ref: 非唯一索引扫描，返回匹配某个单独值的所有行。常见于使用非唯一索引即唯一索引的非唯一前缀进行的查找;</li>
-<li>eq_ref: 唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键或唯一索引扫描;</li>
-<li>const,system: 当mysql对查询某部分进行优化，并转换为一个常量时，使用这些类型访问。如将主键置于where列表中。</li>
-<li>NULL: Mysql在优化过程中分解语句，执行时甚至不用访问表或索引;
-
-<h1>Possible_keys：指出Mysql能使用哪个索引在表中找到行，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用</h1>
-
-<h1>Key：显示Mysql在查询中实际使用的索引，若没有使用索引，显示为NULL</h1>
-
-<h1>Key_len：表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度</h1>
-
-<h1>Ref：表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值</h1>
-
-<h1>Rows：表示Mysql根据表统计信息及索引选用情况估算的找到所需的记录所需要读取的行数</h1>
-
-<h1>Extra：包含不适合在其他列中显示但十分重要的额外信息</h1></li>
-<li>Using index 表示相应的select操作中使用了覆盖索引</li>
-<li>Using Where</li>
-<li>Using temporary 表示Mysql需要使用临时表来存储结果集，常见于排序或分组查询</li>
-<li>Using filesort 表示Mysql中无法利用索引完成的排序操作即“文件排序”</li>
+<li>Explain Select &#8230;.</li>
 </ul>
 
 
-<p>=== Set Profiles ===
-Mysql的Query Profiler 是一个使用方便的Query诊断分析工具，可以获取一条Query在整个执行过程中多种资源的消耗情况，如：CPU、IO、SWAP等，同时还能得到该Query执行过程Mysql所调用的各个函数在源文件中的文件。用法如下：
-此是用户变量，需要时需每次开启profiles功能
-{{{</p>
+<p>执行后包含的信息:ID、Select_type、Table、Type、Possible_keys、Key、Key_len、Ref、Rows、Extra</p>
+
+<p>  Select_type：表示查询每个select子句的类型（简单或复杂）
+  * SIMPLE:查询中不包含子查询或union;
+  * PRIMARY:查询中若包含任何复杂的子部分;
+  * SUBQUERY:在select或where列表中包含子查询;
+  * DERIVED:在from列表中包含子查询;
+  * UNION
+  * UNION RESULT</p>
+
+<p>  Type: 表示Mysql在表中找到所需行的方式，又称“访问类型”，常见类型由差到优依次如下：ALL  index  range  ref  eq_ref  const,system  NULL
+  * ALL:Full Table Scan   Mysql需遍历全表找到匹配的行;
+  * index:Full index Scan index与all的区别在于其只遍历索引查询（使用到索引）;
+  * range: 索引范围扫描，对索引的扫描开始于某一点，返回匹配值域的行，常见于between/</>等的查询;
+  * ref: 非唯一索引扫描，返回匹配某个单独值的所有行。常见于使用非唯一索引即唯一索引的非唯一前缀进行的查找;
+  * eq_ref: 唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键或唯一索引扫描;
+  * const,system: 当mysql对查询某部分进行优化，并转换为一个常量时，使用这些类型访问。如将主键置于where列表中。
+  * NULL: Mysql在优化过程中分解语句，执行时甚至不用访问表或索引;</p>
+
+<p>  Possible_keys：指出Mysql能使用哪个索引在表中找到行，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用
+  Key：显示Mysql在查询中实际使用的索引，若没有使用索引，显示为NULL
+  Key_len：表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度
+  Ref：表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值
+  Rows：表示Mysql根据表统计信息及索引选用情况估算的找到所需的记录所需要读取的行数
+  Extra：包含不适合在其他列中显示但十分重要的额外信息
+  * Using index 表示相应的select操作中使用了覆盖索引
+  * Using Where
+  * Using temporary 表示Mysql需要使用临时表来存储结果集，常见于排序或分组查询
+  * Using filesort 表示Mysql中无法利用索引完成的排序操作即“文件排序”</p>
+
+<h2>Set Profiles</h2>
+
+<p>Mysql的Query Profiler 是一个使用方便的Query诊断分析工具，可以获取一条Query在整个执行过程中多种资源的消耗情况，如：CPU、IO、SWAP等，同时还能得到该Query执行过程Mysql所调用的各个函数在源文件中的文件。用法如下：
+此是用户变量，需要时需每次开启profiles功能</p>
 
 <pre><code>mysql&gt; set profiling=1;
 mysql&gt; show profiles;
@@ -409,9 +394,7 @@ mysql&gt; show profile cpu for query 2;
 mysql&gt; show profile cpu,block io,memory,swaps for query 2;
 </code></pre>
 
-<p>}}}</p>
-
-<p>=== mysqlreport ===</p>
+<h2>mysqlreport</h2>
 </div>
   
   
