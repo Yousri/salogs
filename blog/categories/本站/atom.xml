@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 本站 | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/本站/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-19T21:06:46+08:00</updated>
+  <updated>2011-12-19T21:22:25+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Hello Octopress Thanks Github]]></title>
-    <link href="http://yousri.github.com/salogs/blog/2011/12/19/hello-octopress-thanks-github/"/>
+    <link href="http://yousri.github.com/salogs/blog/hello-octopress-thanks-github/"/>
     <updated>2011-12-19T17:40:00+08:00</updated>
-    <id>http://yousri.github.com/salogs/blog/2011/12/19/hello-octopress-thanks-github</id>
+    <id>http://yousri.github.com/salogs/blog/hello-octopress-thanks-github</id>
     <content type="html"><![CDATA[<p>Hello Octopress and Thanks Github.</p>
 ]]></content>
   </entry>
