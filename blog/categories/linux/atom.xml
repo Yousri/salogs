@@ -1,103 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Salogs</title>
-  <meta name="author" content="Yousri">
-
-  
-  <meta name="description" content="系统级别性能分析工具 这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如： 借助vmstat、sar、iostat检测是否是CPU瓶颈;
-借助free、vmstat检测是否是内存瓶颈;
-借助iostat检测是否是磁盘I/O瓶颈;
-借助netstat检测是否是网络带宽瓶颈; &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://yousri.github.com/salogs">
-  <link href="/salogs/favicon.png" rel="icon">
-  <link href="/salogs/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/salogs/javascripts/modernizr-2.0.js"></script>
-  <script src="/salogs/javascripts/ender.js"></script>
-  <script src="/salogs/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Salogs" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/salogs/">Salogs</a></h1>
-  
-    <h2>A blog about Salogs.</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:yousri.github.com/salogs" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/salogs/">Blog</a></li>
-  <li><a href="/salogs/blog/archives">Archives</a></li>
-  <li><a href="/salogs/about">About</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[Category: Linux | Salogs]]></title>
+  <link href="http://yousri.github.com/salogs/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://yousri.github.com/salogs/"/>
+  <updated>2011-12-19T22:19:08+08:00</updated>
+  <id>http://yousri.github.com/salogs/</id>
+  <author>
+    <name><![CDATA[Yousri]]></name>
     
-      <h1 class="entry-title"><a href="/salogs/blog/performance-monitoring-and-analysis-tools/">Linux常用性能监控分析工具</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2011-12-19T21:54:00+08:00" pubdate data-updated="true">Dec 19<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>系统级别性能分析工具</h1>
+  <entry>
+    <title type="html"><![CDATA[Linux常用性能监控分析工具]]></title>
+    <link href="http://yousri.github.com/salogs/blog/performance-monitoring-and-analysis-tools/"/>
+    <updated>2011-12-19T21:54:00+08:00</updated>
+    <id>http://yousri.github.com/salogs/blog/performance-monitoring-and-analysis-tools</id>
+    <content type="html"><![CDATA[<h1>系统级别性能分析工具</h1>
 
 <p>这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如：</p>
 
@@ -316,7 +237,7 @@ uptime 快捷的查看服务器运行时间、在线用户数、系统即时、�
 <p>=== traceroute ===</p>
 
 <p>=== netstat ===
-服务连接状态：netstat -nat|awk &#8216;{print $6}|sort|uniq -c|sort -rn</p>
+服务连接状态：netstat -nat|awk '{print $6}|sort|uniq -c|sort -rn</p>
 
 <p>=== mtr ===
 最初通常只是使用ping判断网络丢包情况，再结合traceroute跟踪路由走向，直到后来才发现原来linux下有个更好的具备这两者功能的网络分析判断工具，可以说是结合了ping/nslookup/traceroute为一体来判断网络的相关特性，它即是mtr。最常用到的参数为：
@@ -357,7 +278,7 @@ http://xukaizijian.blog.163.com/blog/static/1704331192011011101745336/</p>
 <p>=== show slow puery ===</p>
 
 <p>=== Explain ===
-* Explain Select &#8230;.</p>
+* Explain Select ....</p>
 
 <p>执行后包含的信息:ID、Select_type、Table、Type、Possible_keys、Key、Key_len、Ref、Rows、Extra</p>
 
@@ -414,138 +335,7 @@ mysql&gt; show profile cpu,block io,memory,swaps for query 2;
 <p>}}}</p>
 
 <p>=== mysqlreport ===</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/salogs/blog/hello-octopress-thanks-github/">Hello Octopress Thanks Github</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-19T17:40:00+08:00" pubdate data-updated="true">Dec 19<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Hello Octopress and Thanks Github.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/salogs/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/salogs/blog/performance-monitoring-and-analysis-tools/">Linux常用性能监控分析工具</a>
-      </li>
-    
-      <li class="post">
-        <a href="/salogs/blog/hello-octopress-thanks-github/">Hello Octopress Thanks Github</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("Yousri", 5, true);
-    });
-  </script>
-  <script src="/salogs/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/Yousri" class="twitter-follow-button" data-show-count="true">Follow @Yousri</a>
-  
-</section>
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - Yousri -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'yousri';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+</feed>
