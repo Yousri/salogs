@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://Yousri.github.com/salogs/atom.xml" rel="self"/>
-  <link href="http://Yousri.github.com/salogs/"/>
-  <updated>2011-12-19T16:39:12+08:00</updated>
-  <id>http://Yousri.github.com/salogs/</id>
+  <link href="http://yousri.github.com/salogs/atom.xml" rel="self"/>
+  <link href="http://yousri.github.com/salogs/"/>
+  <updated>2011-12-19T16:52:42+08:00</updated>
+  <id>http://yousri.github.com/salogs/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Yousri]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
