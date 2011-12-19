@@ -4,7 +4,7 @@
   <title><![CDATA[Salogs]]></title>
   <link href="http://yousri.github.com/salogs/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-19T22:36:44+08:00</updated>
+  <updated>2011-12-19T22:40:46+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -71,11 +71,13 @@ Swap:      8193108     720552    7472556
 
 <p>[yousri@jmxc ~]$vmstat 5 5</p>
 
-<ul>
-<li><p>Procs：运行及等待中的进程数</p>
+<p>  Procs：运行及等待中的进程数</p>
 
-<p>  -r:运行的和等待(CPU时间片)运行的进程数，这个值也可以判断是否需要增加CPU(长期大于1)
-  -b:处于不可中断状态的进程数，常见的情况是由IO引起的</p></li>
+<pre><code>-r:运行的和等待(CPU时间片)运行的进程数，这个值也可以判断是否需要增加CPU(长期大于1)
+-b:处于不可中断状态的进程数，常见的情况是由IO引起的
+</code></pre>
+
+<ul>
 <li><p>Memory：内存使用比例包括交换内存、读写缓存及应用程序的cache情况。</p>
 
 <p>  -swpd: 切换到交换内存上的内存(默认以KB为单位)
@@ -303,8 +305,9 @@ avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每�
 
 <h2>Set Profiles</h2>
 
-<p>Mysql的Query Profiler 是一个使用方便的Query诊断分析工具，可以获取一条Query在整个执行过程中多种资源的消耗情况，如：CPU、IO、SWAP等，同时还能得到该Query执行过程Mysql所调用的各个函数在源文件中的文件。用法如下：
-此是用户变量，需要时需每次开启profiles功能</p>
+<p>Mysql的Query Profiler 是一个使用方便的Query诊断分析工具，可以获取一条Query在整个执行过程中多种资源的消耗情况，如：CPU、IO、SWAP等，同时还能得到该Query执行过程Mysql所调用的各个函数在源文件中的文件。用法如下：</p>
+
+<p>此是用户变量，需要时需每次开启profiles功能</p>
 
 <pre><code>mysql&gt; set profiling=1;
 mysql&gt; show profiles;
