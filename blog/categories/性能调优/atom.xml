@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 性能调优 | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/性能调优/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-19T23:01:05+08:00</updated>
+  <updated>2011-12-19T23:05:59+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -269,12 +269,13 @@ avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每�
 
 <p>Select_type：表示查询每个select子句的类型（简单或复杂）</p>
 
-<p>  SIMPLE:查询中不包含子查询或union;
-  PRIMARY:查询中若包含任何复杂的子部分;
-  SUBQUERY:在select或where列表中包含子查询;
-  DERIVED:在from列表中包含子查询;
-  UNION
-  UNION RESULT</p>
+<pre><code>SIMPLE:查询中不包含子查询或union;
+PRIMARY:查询中若包含任何复杂的子部分;
+SUBQUERY:在select或where列表中包含子查询;
+DERIVED:在from列表中包含子查询;
+UNION
+UNION RESULT
+</code></pre>
 
 <p>Type: 表示Mysql在表中找到所需行的方式，又称“访问类型”，常见类型由差到优依次如下：ALL  index  range  ref  eq_ref  const,system  NULL</p>
 
