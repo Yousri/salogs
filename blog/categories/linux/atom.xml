@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-19T23:05:59+08:00</updated>
+  <updated>2011-12-19T23:10:17+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -263,33 +263,25 @@ avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每�
 
 <h2>Explain</h2>
 
-<p>Explain Select ....</p>
-
-<p>执行后包含的信息:ID、Select_type、Table、Type、Possible_keys、Key、Key_len、Ref、Rows、Extra</p>
-
-<p>Select_type：表示查询每个select子句的类型（简单或复杂）</p>
-
-<pre><code>SIMPLE:查询中不包含子查询或union;
-PRIMARY:查询中若包含任何复杂的子部分;
-SUBQUERY:在select或where列表中包含子查询;
-DERIVED:在from列表中包含子查询;
-UNION
-UNION RESULT
-</code></pre>
-
-<p>Type: 表示Mysql在表中找到所需行的方式，又称“访问类型”，常见类型由差到优依次如下：ALL  index  range  ref  eq_ref  const,system  NULL</p>
-
-<p>  ALL:Full Table Scan   Mysql需遍历全表找到匹配的行;
+<p>Explain Select .... <br/>
+执行后包含的信息:ID、Select_type、Table、Type、Possible_keys、Key、Key_len、Ref、Rows、Extra <br/>
+Select_type：表示查询每个select子句的类型（简单或复杂）
+  SIMPLE:查询中不包含子查询或union;
+  PRIMARY:查询中若包含任何复杂的子部分;
+  SUBQUERY:在select或where列表中包含子查询;
+  DERIVED:在from列表中包含子查询;
+  UNION
+  UNION RESULT
+Type: 表示Mysql在表中找到所需行的方式，又称“访问类型”，常见类型由差到优依次如下：ALL  index  range  ref  eq_ref  const,system  NULL
+  ALL:Full Table Scan   Mysql需遍历全表找到匹配的行;
   index:Full index Scan index与all的区别在于其只遍历索引查询（使用到索引）;
   range: 索引范围扫描，对索引的扫描开始于某一点，返回匹配值域的行，常见于between/</>等的查询;
   ref: 非唯一索引扫描，返回匹配某个单独值的所有行。常见于使用非唯一索引即唯一索引的非唯一前缀进行的查找;
   eq_ref: 唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键或唯一索引扫描;
   const,system: 当mysql对查询某部分进行优化，并转换为一个常量时，使用这些类型访问。如将主键置于where列表中。
-  NULL: Mysql在优化过程中分解语句，执行时甚至不用访问表或索引;</p>
-
-<p>Possible_keys：指出Mysql能使用哪个索引在表中找到行，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用</p>
-
-<p>  Key：显示Mysql在查询中实际使用的索引，若没有使用索引，显示为NULL
+  NULL: Mysql在优化过程中分解语句，执行时甚至不用访问表或索引;
+Possible_keys：指出Mysql能使用哪个索引在表中找到行，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用
+  Key：显示Mysql在查询中实际使用的索引，若没有使用索引，显示为NULL
   Key_len：表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度
   Ref：表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值
   Rows：表示Mysql根据表统计信息及索引选用情况估算的找到所需的记录所需要读取的行数
