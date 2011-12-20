@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-20T11:22:21+08:00</updated>
+  <updated>2011-12-20T11:28:29+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -28,6 +28,9 @@
 <li>借助iostat检测是否是磁盘I/O瓶颈;</li>
 <li>借助netstat检测是否是网络带宽瓶颈;</li>
 </ul>
+
+
+<!-- more -->
 
 
 <h2>top</h2>
@@ -70,9 +73,6 @@ Swap:      8193108     720552    7472556
 <pre><code>对操作系统来讲是Mem的参数.buffers/cached 都是属于被使用,所以它认为free只有1092032.
 对应用程序来讲是(-/+ buffers/cach).buffers/cached 是等同可用的，因为buffer/cached是为了提高程序执行的性能，当程序使用内存时，buffer/cached会很快地被使用。
 </code></pre>
-
-<!-- more -->
-
 
 <h2>Vmstat</h2>
 

@@ -12,7 +12,7 @@
   <meta name="description" content="一、系统级别性能分析工具 这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如： 借助vmstat、sar、iostat检测是否是CPU瓶颈;
 借助free、vmstat检测是否是内存瓶颈;
 借助iostat检测是否是磁盘I/O瓶颈;
-借助netstat检测是否是网络带宽瓶颈 &hellip;">
+借助netstat检测是否是网络带宽瓶颈; ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,47 +108,6 @@
 <li>借助netstat检测是否是网络带宽瓶颈;</li>
 </ul>
 
-
-<h2>top</h2>
-
-<h2>ps</h2>
-
-<h2>pstree</h2>
-
-<p>以树状图显示运行的程序，可以指定程序识别码或用户名称对应的运行程序关系：pstree option  [程序识别码/用户名称] 其参数如下：</p>
-
-<pre><code>-a 　显示每个程序的完整指令，包含路径，参数或是常驻服务的标示。   
--c 　不使用精简标示法。   
--G 　使用VT100终端机的列绘图字符。   
--h 　列出树状图时，特别标明现在执行的程序。   
--H   此参数的效果和指定”-h”参数类似，但特别标明指定的程序。   
--l 　采用长列格式显示树状图。   
--n 　用程序识别码排序。预设是以程序名称来排序。   
--p 　显示程序识别码。   
--u 　显示用户名称。   
--U 　使用UTF-8列绘图字符。    
--V 　显示版本信息。   
-</code></pre>
-
-<h2>free</h2>
-
-<p>free是监控linux内存使用状况最常用简单的指令：</p>
-
-<pre><code>[yousri@jmxc ~]$ free
-            total       used       free     shared    buffers     cached
-Mem:      12293188   11201156    1092032          0     459200    2451612
--/+ buffers/cache:    8290344    4002844
-Swap:      8193108     720552    7472556
-</code></pre>
-
-<p>程序应用实际使用的内存是：-buffers/cache 即userd-buffers-cached = 8290344 <br/>
-剩余可用内存是：+buffers/cache 即free+buffers+cached = 4002844</p>
-
-<p>对此两点解释说明：</p>
-
-<pre><code>对操作系统来讲是Mem的参数.buffers/cached 都是属于被使用,所以它认为free只有1092032.
-对应用程序来讲是(-/+ buffers/cach).buffers/cached 是等同可用的，因为buffer/cached是为了提高程序执行的性能，当程序使用内存时，buffer/cached会很快地被使用。
-</code></pre>
 
 </div>
   
