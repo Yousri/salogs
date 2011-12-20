@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 系统管理 | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/系统管理/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-20T11:13:25+08:00</updated>
+  <updated>2011-12-20T11:19:20+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -317,6 +317,9 @@ mysql&gt; show profile cpu,block io,memory,swaps for query 2;
 </code></pre>
 
 <h2>mysqlreport</h2>
+
+<!-- more -->
+
 ]]></content>
   </entry>
   
