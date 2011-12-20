@@ -1,10 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://yousri.github.com/salogs/blog/hello-octopress-thanks-github/</loc>
-        <lastmod>2011-12-19T21:52:06+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yousri.github.com/salogs/blog/performance-monitoring-and-analysis-tools/</loc>
         <lastmod>2011-12-20T11:28:24+08:00</lastmod>
     </url>

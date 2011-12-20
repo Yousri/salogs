@@ -4,7 +4,7 @@
   <title><![CDATA[Salogs]]></title>
   <link href="http://yousri.github.com/salogs/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-20T11:28:29+08:00</updated>
+  <updated>2011-12-20T11:32:13+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -320,15 +320,6 @@ mysql&gt; show profile cpu,block io,memory,swaps for query 2;
 </code></pre>
 
 <h2>mysqlreport</h2>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hello Octopress Thanks Github]]></title>
-    <link href="http://yousri.github.com/salogs/blog/hello-octopress-thanks-github/"/>
-    <updated>2011-12-19T17:40:00+08:00</updated>
-    <id>http://yousri.github.com/salogs/blog/hello-octopress-thanks-github</id>
-    <content type="html"><![CDATA[<p>Hello Octopress and Thanks Github.</p>
 ]]></content>
   </entry>
   
