@@ -111,6 +111,8 @@
 
 <h2>top</h2>
 
+<p>显示所有正在运行进程的详细信息及关于系统各方面如内存、CPU、负载等状态情况，个人较常用到参数是：显示多cpu各个信息&#8211;按1键;进程详细路径&#8211;按字母c键</p>
+
 <h2>ps</h2>
 
 <h2>pstree</h2>
@@ -236,7 +238,7 @@ svctm:      平均每次设备I/O操作的服务时间 (毫秒)。即 delta(use)
 
 <p>相关分析:</p>
 
-<pre><code>如果 %util 接近 100%，说明产生的I/O请求太多，I/O系统已经满负荷，该磁盘可能存在瓶颈。
+<pre><code>如果 %util 接近 100%，基本是产生的I/O请求太多，I/O系统已经满负荷，该磁盘可能存在瓶颈。
 idle小于70% IO压力就较大了,一般读取速度有较多的wait。
 同时可以结合vmstat 查看查看b参数(等待资源的进程数)和wa参数(IO等待所占用的CPU时间的百分比,高过30%时IO压力高) 
 另外 await 的参数也要多和 svctm 来参考。差的过高就一定有 IO 的问题。 
@@ -244,6 +246,8 @@ avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每�
 也可以通过 avgqu-sz × ( r/s or w/s ) = rsec/s or wsec/s.也就是讲，读定速度是这个来决定的。    
 并发请求的数量：并发= (r/s+w/s)*(svctm/1000)
 </code></pre>
+
+<h2>dstat</h2>
 
 <h2>mpstat</h2>
 
@@ -298,6 +302,8 @@ avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每�
 -e  expr     输出过滤器，通过表达式，可以过滤出掉你不想要输出
 </code></pre>
 
+<h2>lsof</h2>
+
 <h2>二、网络分析定位命令工具</h2>
 
 <h2>ping</h2>
@@ -332,7 +338,34 @@ avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每�
 
 <h2>NC</h2>
 
-<p>nc全程<code>NetCat</code> 号称是网络工具中的“瑞士军刀”</p>
+<p>nc全程<code>NetCat</code> 号称是网络工具中的“瑞士军刀”
+通用方法: <br/>
+想要连接到某处: nc [-options] hostname port[s] [ports] … <br/>
+绑定端口等待连接: nc -l -p port [-options] [hostname] [port] <br/>
+参数:</p>
+
+<pre><code>-g gateway source-routing hop point[s], up to 8
+-G num source-routing pointer: 4, 8, 12, …
+-h 帮助信息
+-i secs 延时的间隔
+-l 监听模式，用于入站连接
+-n 指定数字的IP地址，不能用hostname
+-o file 记录16进制的传输
+-p port 本地端口号
+-r 任意指定本地及远程端口
+-s addr 本地源地址
+-u UDP模式
+-v 详细输出——用两个-v可得到更详细的内容
+-w secs timeout的时间
+-z 将输入输出关掉——用于扫描时，其中端口号可以指定一个或者用lo-hi式的指定范围。
+</code></pre>
+
+<p>常用用途：远程拷贝数据、端口扫描 如：</p>
+
+<pre><code>nc -v -w 2 ip -z 21-1024   #端口扫描
+nc -l 8888 &gt; tmp.log #ip:192.168.1.100上执行
+nc 192.168.1.100 8888 &lt; tmp.log #拷贝
+</code></pre>
 
 <h2>nmap</h2>
 
