@@ -4,7 +4,7 @@
   <title><![CDATA[Salogs]]></title>
   <link href="http://yousri.github.com/salogs/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-23T16:08:33+08:00</updated>
+  <updated>2011-12-23T16:18:44+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -35,7 +35,8 @@
 
 <h2>top</h2>
 
-<p>显示所有正在运行进程的详细信息及关于系统各方面如内存、CPU、负载等状态情况，个人较常用到参数是：显示多cpu各个信息&#8211;按1键;进程详细路径&#8211;按字母c键</p>
+<p>显示所有正在运行进程的详细信息及关于系统各方面如内存、CPU、负载等状态情况，
+个人较常用到参数是：显示多cpu各个信息&#8211;按1键;  进程详细路径&#8211;按字母c键</p>
 
 <h2>ps</h2>
 
@@ -262,7 +263,7 @@ avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每�
 
 <h2>NC</h2>
 
-<p>nc全程<code>NetCat</code> 号称是网络工具中的“瑞士军刀”
+<p>nc全程<code>NetCat</code> 号称是网络工具中的“瑞士军刀” <br/>
 通用方法: <br/>
 想要连接到某处: nc [-options] hostname port[s] [ports] … <br/>
 绑定端口等待连接: nc -l -p port [-options] [hostname] [port] <br/>
