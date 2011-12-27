@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Salogs</title>
+  <title>crontab导致/var分区空间爆满的问题 - Salogs</title>
   <meta name="author" content="Yousri">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yousri.github.com/salogs">
+  <link rel="canonical" href="http://yousri.github.com/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab">
   <link href="/salogs/favicon.png" rel="icon">
   <link href="/salogs/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/salogs/javascripts/modernizr-2.0.js"></script>
@@ -63,15 +63,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/">Crontab导致/var分区空间爆满的问题</a></h1>
+      <h1 class="entry-title">Crontab导致/var分区空间爆满的问题</h1>
     
     
       <p class="meta">
@@ -94,7 +91,7 @@
   </header>
 
 
-  <div class="entry-content"><p>最近清理磁盘空间时发现/var空间使用异常且节点inode数偏大即文件数(几百K甚至上M）。du -sh目录层层逐一查下去看的时候，发现/var/spool/clientmqueue这个目录，里面文件有好几十w甚至上百w个。随手Google下才了解这个问题的原因是crontab的一些计划任务中产生了大量日志信息。这些日志信息没有导入到/dev/null或者指定的文件。结果就产生了目录下的这些文件。本来这些文件要作为mail发出去的，而因为sendmail服务先前就已经关闭的，积留在这里了。故crontab的计划任务最好全部写成这个样子：</p>
+<div class="entry-content"><p>最近清理磁盘空间时发现/var空间使用异常且节点inode数偏大即文件数(几百K甚至上M）。du -sh目录层层逐一查下去看的时候，发现/var/spool/clientmqueue这个目录，里面文件有好几十w甚至上百w个。随手Google下才了解这个问题的原因是crontab的一些计划任务中产生了大量日志信息。这些日志信息没有导入到/dev/null或者指定的文件。结果就产生了目录下的这些文件。本来这些文件要作为mail发出去的，而因为sendmail服务先前就已经关闭的，积留在这里了。故crontab的计划任务最好全部写成这个样子：</p>
 
 <pre><code>30 3 * * * sh /root/cron/dbbackup.sh  &gt;/dev/null 2&gt;&amp;1   
 </code></pre>
@@ -110,22 +107,16 @@
 b、利用find -delete。具体命令为find /var/spool/clientmqueue/ -type f -delete
 </code></pre>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/salogs/blog/performance-monitoring-and-analysis-tools/">Linux常用性能监控分析工具</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Yousri</span></span>
+
+      
 
 
 
@@ -137,42 +128,44 @@ b、利用find -delete。具体命令为find /var/spool/clientmqueue/ -type f -d
   
 
 
-<time datetime="2011-12-19T21:54:00+08:00" pubdate data-updated="true">Dec 19<span>th</span>, 2011</time>
-        
-      </p>
+<time datetime="2011-12-27T14:36:00+08:00" pubdate data-updated="true">Dec 27<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://yousri.github.com/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/" data-via="Yousri" data-counturl="http://yousri.github.com/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/" >Tweet</a>
+  
+  
+  
+</div>
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/salogs/blog/performance-monitoring-and-analysis-tools/" title="Previous Post: Linux常用性能监控分析工具">&laquo; Linux常用性能监控分析工具</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-  <div class="entry-content"><h2>一、系统级别性能分析工具</h2>
-
-<p>这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如：</p>
-
-<ul>
-<li>借助vmstat、sar、iostat检测是否是CPU瓶颈;</li>
-<li>借助free、vmstat检测是否是内存瓶颈;</li>
-<li>借助iostat检测是否是磁盘I/O瓶颈;</li>
-<li>借助netstat检测是否是网络带宽瓶颈;</li>
-</ul>
-
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/salogs/blog/performance-monitoring-and-analysis-tools/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/salogs/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -194,7 +187,7 @@ b、利用find -delete。具体命令为find /var/spool/clientmqueue/ -type f -d
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -214,6 +207,7 @@ b、利用find -delete。具体命令为find /var/spool/clientmqueue/ -type f -d
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -228,7 +222,10 @@ b、利用find -delete。具体命令为find /var/spool/clientmqueue/ -type f -d
       var disqus_shortname = 'yousri';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yousri.github.com/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/';
+        var disqus_url = 'http://yousri.github.com/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
