@@ -4,7 +4,7 @@
   <title><![CDATA[Salogs]]></title>
   <link href="http://yousri.github.com/salogs/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-27T16:08:18+08:00</updated>
+  <updated>2011-12-27T21:41:43+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -22,6 +22,9 @@
 
 <pre><code>30 3 * * * sh /root/cron/dbbackup.sh  &gt;/dev/null 2&gt;&amp;1   
 </code></pre>
+
+<!-- More -->
+
 
 <p>其中这里2 > &amp;1表示标准错误也放到标准输出，而标准输出导入到/dev/null；即日志信息直接/dev/null。如果特别需要的话，可指定到文件。 <br/>
 这里还有一个注意的地方就是> /dev/null 2 > &amp;1的顺序，否则标准错误不能导入到标准输出，而还是输入clientmqueue目录下</p>
