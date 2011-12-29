@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-29T11:51:01+08:00</updated>
+  <updated>2011-12-29T13:56:54+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -294,6 +294,49 @@ avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每�
 </code></pre>
 
 <h2>dstat</h2>
+
+<p>功能类似于SysStat，可收集到-cpu-、-disk-、-net-、－paging-、-system-等使用情况的数据，默认一秒钟收集一次。Dstat拥有一个彩色的界面，在手动观察性能状况时，数据比较显眼容易观察；而且Dstat支持即时刷新，譬如：输入 dstat 5，即每五秒收集一次，但最新的数据都会每秒刷新显示。和SysStat相同的是，Dstat也可以收集指定的性能资源。譬如 dstat -c 即显示CPU的使用情况。 <br/>
+关于dstat具体详细的参数选项大致有：</p>
+
+<pre><code>-c, --cpu              显示CPU情况
+-C 0,3,total           include cpu0, cpu3 and total
+-d, --disk             显示磁盘情况
+-D total,hda           include hda and total
+-g, --page             enable page stats
+-i, --int              enable interrupt stats
+-I 5,eth2              include int5 and interrupt used by eth2
+-l, --load             enable load stats
+-m, --mem              显示内存情况
+-n, --net              显示网络情况
+-N eth1,total          可以指定网络接口
+-p, --proc             enable process stats
+-s, --swap             显示swap情况
+-S swap1,total         可以指定多个swap
+-t, --time             enable time counter
+-y, --sys              enable system stats
+--ipc                  报告IPC消息队列和信号量的使用情况
+--lock                 enable lock stats
+--raw                  enable raw stats
+--tcp                  enable tcp stats
+--udp                  enable udp stats
+--unix                 enable unix stats
+-M stat1,stat2         enable external stats
+--mods stat1,stat2
+-a, --all              使用-cdngy 缺省的就是这样显示
+-f, --full             使用 -C, -D, -I, -N and -S 显示
+-v, --vmstat           使用-pmgdsc -D 显示
+--integer              show integer values
+--nocolor              disable colors (implies --noupdate)
+--noheaders            只显示一次表头以后就不显示了,使用重定向写入文件时很有用
+--noupdate             disable intermediate updates
+--output file          写入到CVS文件中
+</code></pre>
+
+<p>其中推荐个人比较常用的参数有：</p>
+
+<pre><code>dstat -tcdlmnpsy 20 #没20秒收集一次数据
+alias dstat = 'dstat -tcdlmnpsy' #添加设置.bashrc别名功能
+</code></pre>
 
 <h2>mpstat</h2>
 
