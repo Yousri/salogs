@@ -451,7 +451,56 @@ alias dstat = 'dstat -tcdlmnpsy' #添加设置.bashrc别名功能
 
 <h2>netstat</h2>
 
-<p>服务连接状态：netstat -nat|awk &#8216;{print $6}|sort|uniq -c|sort -rn</p>
+<p>Netstat用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。 <br/>
+netstat [-a] [-b] [-e] [-n] [-o] [-p proto] [-r] [-s] [-v] [interval]</p>
+
+<pre><code>-a或–all 显示所有连线中的Socket。
+-A&lt;网络类型&gt;或–&lt;网络类型&gt; 列出该网络类型连线中的相关地址。
+-c或–continuous 持续列出网络状态。
+-C或–cache 显示路由器配置的快取信息。
+-e或–extend 显示网络其他相关信息。
+-g或–groups 显示多重广播功能群组组员名单。
+-i或–interfaces 显示网络界面信息表单。
+-l或–listening 显示监控中的服务器的Socket。
+-M或–masquerade 显示伪装的网络连线。
+-n或–numeric 直接使用IP地址，而不通过域名服务器。
+-N或–netlink或–symbolic 显示网络硬件外围设备的符号连接名称。
+-o或–timers 显示计时器。
+-p或–programs 显示正在使用Socket的程序识别码和程序名称。
+-r或–route 显示Routing Table。
+-s或–statistice 显示网络工作信息统计表。
+-t或–tcp 显示TCP传输协议的连线状况。
+-u或–udp 显示UDP传输协议的连线状况。
+</code></pre>
+
+<p>比较常用的参数主要有：</p>
+
+<pre><code>netstat -anlp
+netstat -r
+netstat -tnpl
+</code></pre>
+
+<p>其中网络连接状态又分有多种：其是按照TCP连接建立的三次握手和TCP连接断开的四次挥手过程来描述的。</p>
+
+<pre><code>1)、LISTEN:首先服务端需要打开一个socket进行监听，状态为LISTEN.
+2)、SYN_SENT:客户端通过应用程序调用connect进行active open.于是客户端tcp发送一个SYN以请求建立一个连接.之后状态置为SYN_SENT.
+3)、SYN_RECV:服务端应发出ACK确认客户端的 SYN,同时自己向客户端发送一个SYN. 之后状态置为SYN_RECV
+4)、ESTABLISHED: 代表一个打开的连接，双方可以进行或已经在数据交互了。
+5)、FIN_WAIT1:主动关闭(active close)端应用程序调用close，于是其TCP发出FIN请求主动关闭连接，之后进入FIN_WAIT1状态.
+6)、CLOSE_WAIT:被动关闭(passive close)端TCP接到FIN后，就发出ACK以回应FIN请求(它的接收也作为文件结束符传递给上层应用程序),并进入CLOSE_WAIT.
+7)、FIN_WAIT2:主动关闭端接到ACK后，就进入了 FIN-WAIT-2.
+8)、LAST_ACK:被动关闭端一段时间后，接收到文件结束符的应用程序将调用CLOSE关闭连接。这导致它的TCP也发送一个 FIN,等待对方的ACK.就进入了LAST-ACK .
+9)、TIME_WAIT:在主动关闭端接收到FIN后，TCP 就发送ACK包，并进入TIME-WAIT状态。
+10)、CLOSING: 比较少见.
+11)、CLOSED: 被动关闭端在接受到ACK包后，就进入了closed的状态。连接结束.
+12)、UNKNOWN: 未知的Socket状态。
+</code></pre>
+
+<p>日常维护过程中涉及到查看系统连接状态情况的几个常用命令：</p>
+
+<pre><code>服务TCP连接状态：netstat -nat|awk '{print $6}|sort|uniq -c|sort -rn
+查找请求数前20个IP（攻击源判断）：netstat -antlp|grep 80|awk '{print $5}'|awk -F: '{print $1}'|sort|uniq -c|sort -nr|head -n20
+</code></pre>
 
 <h2>mtr</h2>
 
