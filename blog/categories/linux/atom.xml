@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-29T15:12:20+08:00</updated>
+  <updated>2011-12-29T15:17:23+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -401,10 +401,10 @@ alias dstat = 'dstat -tcdlmnpsy' #添加设置.bashrc别名功能
 
 <h2>netstat</h2>
 
-<p>Netstat用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。 <br/>
-netstat [-a] [-b] [-e] [-n] [-o] [-p proto] [-r] [-s] [-v] [interval]</p>
+<p>Netstat用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。</p>
 
-<pre><code>-a或–all 显示所有连线中的Socket。
+<pre><code>netstat [-a] [-b] [-e] [-n] [-o] [-p proto] [-r] [-s] [-v] [interval]
+-a或–all 显示所有连线中的Socket。
 -A&lt;网络类型&gt;或–&lt;网络类型&gt; 列出该网络类型连线中的相关地址。
 -c或–continuous 持续列出网络状态。
 -C或–cache 显示路由器配置的快取信息。
