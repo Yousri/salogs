@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 系统管理 | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/系统管理/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2011-12-29T15:10:43+08:00</updated>
+  <updated>2011-12-29T15:12:20+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -450,6 +450,7 @@ netstat -tnpl
 
 <pre><code>服务TCP连接状态：netstat -nat|awk '{print $6}|sort|uniq -c|sort -rn
 查找请求数前20个IP（攻击源判断）：netstat -antlp|grep 80|awk '{print $5}'|awk -F: '{print $1}'|sort|uniq -c|sort -nr|head -n20
+查看程序(php-cgi)连接数：netstat -anpo|grep php-cgi|wc -l
 </code></pre>
 
 <h2>mtr</h2>
