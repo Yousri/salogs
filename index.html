@@ -100,13 +100,13 @@
 <p>因此通过搜索引擎了解到，可以通过ssh代理转发功能及代理认证解决，其中用到ssh-agent 就是一个管理私钥的代理，受管理的私钥通过 ssh-add 来添加，所有 ssh-agent 的客户端都可以共享使用这些私钥;以及开启代理转发ForwardAgent yes或者ssh -A选项开启。 <br/>
 其实：ssh-agent起到的效果有2点：一、不用每次重复输入密码;二、私钥只需部署于本地同样可在远程服务器下调用。</p>
 
-<p>大致配置操作：
-1.vim /etc/ssh/ssh_config 或~/.ssh/config 修改配置ForwardAgent yes (若没开启需每次连接时使用ssh -A选项进行开启转发代理)
-2.启动ssh-agent
-3.使用ssh-add将私钥添加到管理私钥的代理&#8212;ssh-agent下，</p>
+<p>大致配置操作：</p>
 
-<pre><code>ssh-add ~/.ssh/id\_rsa #添加
-ssh-add -l   #查看
+<pre><code>1.vim /etc/ssh/ssh\_config 或~/.ssh/config 修改配置ForwardAgent yes (若没开启需每次连接时使用ssh -A选项进行开启转发代理)
+2.启动ssh-agent
+3.使用ssh-add将私钥添加到管理私钥的代理---ssh-agent下，
+    ssh-add ~/.ssh/id\_rsa #添加
+    ssh-add -l   #查看
 </code></pre>
 
 <p>如此一来，不管s1&#8211;>s2还是s2&#8211;>s1都可以使用本地的私钥进行验证而无需输入密码。</p>
