@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 系统管理 | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/系统管理/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2012-01-05T17:14:47+08:00</updated>
+  <updated>2012-01-05T17:17:58+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -18,17 +18,19 @@
     <link href="http://yousri.github.com/salogs/blog/about-ssh-key-auth-and-ssh-agent/"/>
     <updated>2012-01-05T16:15:00+08:00</updated>
     <id>http://yousri.github.com/salogs/blog/about-ssh-key-auth-and-ssh-agent</id>
-    <content type="html"><![CDATA[<p>对于ssh公密钥认证免密码设置想必基本都比较熟悉不够，详见：<a href="http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html">SSH Without a Password</a>,但这里想记录的是关于日常使用过程中遇到些小麻烦所延伸的问题，因为通常会设置此认证方式原因莫过于一、安全考虑;二、服务器量多管理操作方便等原因。情况大致是，本地机器local，分别有服务器：s1和s2等等，私钥放在local，公钥分别放在两台服务器，那local登录到两台服务器都可以不再需要密码认证。但s1与s2直接通信的话还是需要输入密码（如果限制了密码方式登录那不是更麻烦了?）</p>
+    <content type="html"><![CDATA[<p>对于ssh公密钥认证免密码设置想必基本都比较熟悉不够，详见：<a href="http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html">SSH Without a Password</a> <br/>
+但这里想记录的是关于日常使用过程中遇到些小麻烦所延伸的问题，因为通常会设置此认证方式原因莫过于一、安全考虑;二、服务器量多管理操作方便等原因。情况大致是，本地机器local，分别有服务器：s1和s2等等，私钥放在local，公钥分别放在两台服务器，那local登录到两台服务器都可以不再需要密码认证。但s1与s2直接通信的话还是需要输入密码（如果限制了密码方式登录那不是更麻烦了?）</p>
 
-<p>因此通过搜索引擎了解到，可以通过ssh代理转发功能及代理认证解决，其中用到ssh-agent 就是一个管理私钥的代理，受管理的私钥通过 ssh-add 来添加，所有 ssh-agent 的客户端都可以共享使用这些私钥;以及开启代理转发ForwardAgent yes或者ssh -A选项开启。其实：ssh-agent实现功能有2点：一、不用每次重复输入密码;二、私钥只需部署于本地同样可在远程服务器下调用。</p>
+<p>因此通过搜索引擎了解到，可以通过ssh代理转发功能及代理认证解决，其中用到ssh-agent 就是一个管理私钥的代理，受管理的私钥通过 ssh-add 来添加，所有 ssh-agent 的客户端都可以共享使用这些私钥;以及开启代理转发ForwardAgent yes或者ssh -A选项开启。 <br/>
+其实：ssh-agent起到的效果有2点：一、不用每次重复输入密码;二、私钥只需部署于本地同样可在远程服务器下调用。</p>
 
-<p>大致配置操作：</p>
-
-<pre><code>1.vim /etc/ssh/ssh\_config 或~/.ssh/config 修改配置ForwardAgent yes (若没开启需每次连接时使用ssh -A选项进行开启转发代理)
+<p>大致配置操作：
+1.vim /etc/ssh/ssh_config 或~/.ssh/config 修改配置ForwardAgent yes (若没开启需每次连接时使用ssh -A选项进行开启转发代理)
 2.启动ssh-agent
-3.使用ssh-add将私钥添加到管理私钥的代理---ssh-agent下，
-    ssh-add ~/.ssh/id\_rsa #添加
-    ssh-add -l   #查看
+3.使用ssh-add将私钥添加到管理私钥的代理---ssh-agent下，</p>
+
+<pre><code>ssh-add ~/.ssh/id\_rsa #添加
+ssh-add -l   #查看
 </code></pre>
 
 <p>如此一来，不管s1-->s2还是s2-->s1都可以使用本地的私钥进行验证而无需输入密码。</p>
