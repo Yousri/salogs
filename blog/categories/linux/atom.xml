@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2012-01-05T17:17:58+08:00</updated>
+  <updated>2012-01-05T17:19:37+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[SSH密钥代理转发管理应用]]></title>
+    <title type="html"><![CDATA[SSH密钥代理管理应用]]></title>
     <link href="http://yousri.github.com/salogs/blog/about-ssh-key-auth-and-ssh-agent/"/>
     <updated>2012-01-05T16:15:00+08:00</updated>
     <id>http://yousri.github.com/salogs/blog/about-ssh-key-auth-and-ssh-agent</id>
