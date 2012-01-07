@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Salogs</title>
+  <title>Ubuntu 11.10安装配置Ruby on Rails开发环境 - Salogs</title>
   <meta name="author" content="Yousri">
 
   
-  <meta name="description" content="Blog Archive 2012 Ubuntu 11.10安装配置Ruby on Rails开发环境
-Jan 07 2012 posted in Linux, Rails SSH密钥代理管理应用
-Jan 05 2012 posted in linux, 系统管理 2011 crontab导致/ &hellip;">
+  <meta name="description" content="1.初始系统安装开发包 $ sudo apt-get install build-essential 2.安装RVM $ bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ Jan 05 2012 posted in linux, 系统管理 2011 crontab导致/ &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yousri.github.com/salogs/blog/archives">
+  <link rel="canonical" href="http://yousri.github.com/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu">
   <link href="/salogs/favicon.png" rel="icon">
   <link href="/salogs/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/salogs/javascripts/modernizr-2.0.js"></script>
@@ -66,81 +64,143 @@ Jan 05 2012 posted in linux, 系统管理 2011 crontab导致/ &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Ubuntu 11.10安装配置Ruby on Rails开发环境</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-07T09:46:00+08:00" pubdate data-updated="true">Jan 7<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>1.初始系统安装开发包</p>
 
-  
-  <h2>2012</h2>
+<pre><code>$ sudo apt-get install build-essential
+</code></pre>
 
-<article>
-  
-<h1><a href="/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/">Ubuntu 11.10安装配置Ruby on Rails开发环境</a></h1>
-<time datetime="2012-01-07T09:46:00+08:00" pubdate><span class='month'>Jan</span> <span class='day'>07</span> <span class='year'>2012</span></time>
+<p>2.安装RVM</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/rails/'>Rails</a></span>
-</footer>
+<pre><code>$ bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+</code></pre>
 
+<p>测试查看是否已经安装成功:</p>
 
-</article>
+<pre><code>$ rvm -v
+rvm 1.10.1 by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.beginrescueend.com/]
+</code></pre>
 
+<p>修改用户bash相应配置文件~/.bashrc，确保每次用户登录时RVM脚本都会载入</p>
 
+<pre><code>$ vim ~/.bashrc
+[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" #增加此行
+$ source ~/.bashrc  
+</code></pre>
 
-<article>
-  
-<h1><a href="/salogs/blog/about-ssh-key-auth-and-ssh-agent/">SSH密钥代理管理应用</a></h1>
-<time datetime="2012-01-05T16:15:00+08:00" pubdate><span class='month'>Jan</span> <span class='day'>05</span> <span class='year'>2012</span></time>
+<p>3.借助RVM安装Ruby环境</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>linux</a>, <a class='category' href='/salogs/blog/categories/系统管理/'>系统管理</a></span>
-</footer>
+<pre><code>$ rvm notes
+</code></pre>
 
+<p>可以列出标准版的Ruby所需的依赖包：</p>
 
-</article>
+<pre><code>$ sudo apt-get install build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev
+</code></pre>
 
+<p>安装ruby和rubygems：</p>
 
+<pre><code>$ rvm list known  #列出哪些版本的Ruby可安装
+$ rvm install 1.9.2
+$ rvm --default use 1.9.2
+</code></pre>
 
-  
-  <h2>2011</h2>
+<p>检查确认下Ruby和RubyGems的版本：</p>
 
-<article>
-  
-<h1><a href="/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/">crontab导致/var分区空间爆满的问题</a></h1>
-<time datetime="2011-12-27T14:36:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>27</span> <span class='year'>2011</span></time>
+<pre><code>$ ruby -v
+$ gem -v
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/系统管理/'>系统管理</a></span>
-</footer>
+<p>4.安装Rails环境
+Rails 全部都打包在 Rails Gem 中。安装它是这个教程中最容易的部分。使用 RubyGems 来安装它，即 gem 命令。安装完成后，检查其版本来确保正确安装。</p>
 
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/salogs/blog/performance-monitoring-and-analysis-tools/">Linux常用性能监控分析工具</a></h1>
-<time datetime="2011-12-19T21:54:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>19</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/性能调优/'>性能调优</a>, <a class='category' href='/salogs/blog/categories/系统管理/'>系统管理</a></span>
-</footer>
-
-
-</article>
-
+<pre><code>$ sudo gem install bundler rails
+$ rails -v 
+注:必要时需修改下系统环境变量PATH：export /usr/local/bin/ruby:$PATH
+</code></pre>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Yousri</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-07T09:46:00+08:00" pubdate data-updated="true">Jan 7<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/rails/'>Rails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://yousri.github.com/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/" data-via="Yousri" data-counturl="http://yousri.github.com/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/salogs/blog/about-ssh-key-auth-and-ssh-agent/" title="Previous Post: SSH密钥代理管理应用">&laquo; SSH密钥代理管理应用</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -208,7 +268,10 @@ Jan 05 2012 posted in linux, 系统管理 2011 crontab导致/ &hellip;">
       var disqus_shortname = 'yousri';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yousri.github.com/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/';
+        var disqus_url = 'http://yousri.github.com/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -9,7 +9,7 @@
   <meta name="author" content="Yousri">
 
   
-  <meta name="description" content="对于ssh公密钥认证免密码设置想必基本都比较熟悉不够，详见：SSH Without a Password 但这里想记录的是关于日常使用过程中遇到些小麻烦所延伸的问题，因为通常会设置此认证方式原因莫过于一、安全考虑;二、服务器量多管理操作方便等原因。情况大致是，本地机器local，分别有服务器： &hellip;">
+  <meta name="description" content="1.初始系统安装开发包 $ sudo apt-get install build-essential 2.安装RVM $ bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,94 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/">Ubuntu 11.10安装配置Ruby on Rails开发环境</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-07T09:46:00+08:00" pubdate data-updated="true">Jan 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>1.初始系统安装开发包</p>
+
+<pre><code>$ sudo apt-get install build-essential
+</code></pre>
+
+<p>2.安装RVM</p>
+
+<pre><code>$ bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+</code></pre>
+
+<p>测试查看是否已经安装成功:</p>
+
+<pre><code>$ rvm -v
+rvm 1.10.1 by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.beginrescueend.com/]
+</code></pre>
+
+<p>修改用户bash相应配置文件~/.bashrc，确保每次用户登录时RVM脚本都会载入</p>
+
+<pre><code>$ vim ~/.bashrc
+[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" #增加此行
+$ source ~/.bashrc  
+</code></pre>
+
+<p>3.借助RVM安装Ruby环境</p>
+
+<pre><code>$ rvm notes
+</code></pre>
+
+<p>可以列出标准版的Ruby所需的依赖包：</p>
+
+<pre><code>$ sudo apt-get install build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev
+</code></pre>
+
+<p>安装ruby和rubygems：</p>
+
+<pre><code>$ rvm list known  #列出哪些版本的Ruby可安装
+$ rvm install 1.9.2
+$ rvm --default use 1.9.2
+</code></pre>
+
+<p>检查确认下Ruby和RubyGems的版本：</p>
+
+<pre><code>$ ruby -v
+$ gem -v
+</code></pre>
+
+<p>4.安装Rails环境
+Rails 全部都打包在 Rails Gem 中。安装它是这个教程中最容易的部分。使用 RubyGems 来安装它，即 gem 命令。安装完成后，检查其版本来确保正确安装。</p>
+
+<pre><code>$ sudo gem install bundler rails
+$ rails -v 
+注:必要时需修改下系统环境变量PATH：export /usr/local/bin/ruby:$PATH
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -228,6 +316,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/">Ubuntu 11.10安装配置Ruby on Rails开发环境</a>
+      </li>
     
       <li class="post">
         <a href="/salogs/blog/about-ssh-key-auth-and-ssh-agent/">SSH密钥代理管理应用</a>
