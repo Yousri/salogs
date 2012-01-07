@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2012-01-07T10:29:02+08:00</updated>
+  <updated>2012-01-07T10:30:52+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -40,6 +40,9 @@ rvm 1.10.1 by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;m
 [[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" #增加此行
 $ source ~/.bashrc  
 </code></pre>
+
+<!-- more -->
+
 
 <p>3.借助RVM安装Ruby环境</p>
 
