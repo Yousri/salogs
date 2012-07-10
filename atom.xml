@@ -4,7 +4,7 @@
   <title><![CDATA[Salogs]]></title>
   <link href="http://yousri.github.com/salogs/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2012-01-07T10:30:52+08:00</updated>
+  <updated>2012-07-11T07:07:19+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Test]]></title>
+    <link href="http://yousri.github.com/salogs/blog/test/"/>
+    <updated>2012-07-11T07:06:00+08:00</updated>
+    <id>http://yousri.github.com/salogs/blog/test</id>
+    <content type="html"><![CDATA[<p>Test</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ubuntu 11.10安装配置Ruby on Rails开发环境]]></title>
