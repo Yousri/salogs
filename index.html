@@ -9,7 +9,12 @@
   <meta name="author" content="Yousri">
 
   
-  <meta name="description" content="1.初始系统安装开发包 $ sudo apt-get install build-essential 2.安装RVM $ bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm- &hellip;">
+  <meta name="description" content="总体步骤：
+1.下载最新安装包：nagios-3.4.1.tar.gz 2.解压编译： tar zxf nagios-3.4.1.tar.gz
+cd nagios
+./configure --with-command-group=nagcmd
+make all
+make install 3. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +70,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/salogs/blog/how-to-update-nagios/">Nagios版本升级</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-02T20:57:00+08:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>总体步骤：
+1.下载最新安装包：nagios-3.4.1.tar.gz</p>
+
+<p>2.解压编译：</p>
+
+<pre><code>tar zxf nagios-3.4.1.tar.gz
+cd nagios
+./configure --with-command-group=nagcmd
+make all
+make install
+</code></pre>
+
+<p>3.测试验证：</p>
+
+<pre><code>/usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+</code></pre>
+
+<p>4.重启服务：</p>
+
+<pre><code>service nagios restart
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -290,6 +351,10 @@ $ source ~/.bashrc
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/salogs/blog/how-to-update-nagios/">Nagios版本升级</a>
+      </li>
     
       <li class="post">
         <a href="/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/">Ubuntu 11.10安装配置Ruby on Rails开发环境</a>

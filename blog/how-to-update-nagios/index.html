@@ -5,11 +5,16 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: 系统管理 - Salogs</title>
+  <title>Nagios版本升级 - Salogs</title>
   <meta name="author" content="Yousri">
 
   
-  <meta name="description" content="Category: 系统管理">
+  <meta name="description" content="总体步骤：
+1.下载最新安装包：nagios-3.4.1.tar.gz 2.解压编译： tar zxf nagios-3.4.1.tar.gz
+cd nagios
+./configure --with-command-group=nagcmd
+make all
+make install 3. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yousri.github.com/salogsblog/categories/系统管理">
+  <link rel="canonical" href="http://yousri.github.com/salogs/blog/how-to-update-nagios">
   <link href="/salogs/favicon.png" rel="icon">
   <link href="/salogs/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/salogs/javascripts/modernizr-2.0.js"></script>
@@ -64,67 +69,111 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: 系统管理</h1>
+    
+      <h1 class="entry-title">Nagios版本升级</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-02T20:57:00+08:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>总体步骤：
+1.下载最新安装包：nagios-3.4.1.tar.gz</p>
 
-  
-  <h2>2012</h2>
+<p>2.解压编译：</p>
 
-<article>
-  
-<h1><a href="/salogs/blog/about-ssh-key-auth-and-ssh-agent/">SSH密钥代理管理应用</a></h1>
-<time datetime="2012-01-05T16:15:00+08:00" pubdate><span class='month'>Jan</span> <span class='day'>05</span> <span class='year'>2012</span></time>
+<pre><code>tar zxf nagios-3.4.1.tar.gz
+cd nagios
+./configure --with-command-group=nagcmd
+make all
+make install
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>linux</a>, <a class='category' href='/salogs/blog/categories/系统管理/'>系统管理</a></span>
-</footer>
+<p>3.测试验证：</p>
 
+<pre><code>/usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+</code></pre>
 
-</article>
+<p>4.重启服务：</p>
 
-
-
-  
-  <h2>2011</h2>
-
-<article>
-  
-<h1><a href="/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/">crontab导致/var分区空间爆满的问题</a></h1>
-<time datetime="2011-12-27T14:36:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>27</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/系统管理/'>系统管理</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/salogs/blog/performance-monitoring-and-analysis-tools/">Linux常用性能监控分析工具</a></h1>
-<time datetime="2011-12-19T21:54:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>19</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/性能调优/'>性能调优</a>, <a class='category' href='/salogs/blog/categories/系统管理/'>系统管理</a></span>
-</footer>
-
-
-</article>
-
+<pre><code>service nagios restart
+</code></pre>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Yousri</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-02T20:57:00+08:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/监控/'>监控</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://yousri.github.com/salogs/blog/how-to-update-nagios/" data-via="Yousri" data-counturl="http://yousri.github.com/salogs/blog/how-to-update-nagios/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/" title="Previous Post: Ubuntu 11.10安装配置Ruby on Rails开发环境">&laquo; Ubuntu 11.10安装配置Ruby on Rails开发环境</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -196,7 +245,10 @@
       var disqus_shortname = 'yousri';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yousri.github.com/salogs/blog/how-to-update-nagios/';
+        var disqus_url = 'http://yousri.github.com/salogs/blog/how-to-update-nagios/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
