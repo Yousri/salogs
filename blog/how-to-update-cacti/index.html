@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Salogs</title>
+  <title>升级Cacti版本 - Salogs</title>
   <meta name="author" content="Yousri">
 
   
-  <meta name="description" content="Blog Archive 2012 升级Cacti版本
-Aug 03 2012 posted in Linux, 监控 Nagios版本升级
-Aug 02 2012 posted in Linux, 监控 Ubuntu 11.10安装配置Ruby on Rails开发环境
-Jan 07 2012 &hellip;">
+  <meta name="description" content="总体步骤如下： 1.下载最新安装包，并且解压； tar zxf cacti-0.8.8a.tar.gz 2.include/config.php 修改数据库信息； vim cacti-0.8.8a/include/config.php 3.备份数据库； mysqldump -ucacti -p &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@ Jan 07 2012 &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yousri.github.com/salogs/blog/archives">
+  <link rel="canonical" href="http://yousri.github.com/salogs/blog/how-to-update-cacti">
   <link href="/salogs/favicon.png" rel="icon">
   <link href="/salogs/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/salogs/javascripts/modernizr-2.0.js"></script>
@@ -67,109 +64,143 @@ Jan 07 2012 &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">升级Cacti版本</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-03T13:57:00+08:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>总体步骤如下：</p>
 
-  
-  <h2>2012</h2>
+<p>1.下载最新安装包，并且解压；</p>
 
-<article>
-  
-<h1><a href="/salogs/blog/how-to-update-cacti/">升级Cacti版本</a></h1>
-<time datetime="2012-08-03T13:57:00+08:00" pubdate><span class='month'>Aug</span> <span class='day'>03</span> <span class='year'>2012</span></time>
+<pre><code>tar zxf cacti-0.8.8a.tar.gz
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/监控/'>监控</a></span>
-</footer>
+<p>2.include/config.php 修改数据库信息；</p>
 
+<pre><code>vim cacti-0.8.8a/include/config.php
+</code></pre>
 
-</article>
+<p>3.备份数据库；</p>
 
+<pre><code>mysqldump -ucacti -p cacti087e &gt; cacti.sql
+</code></pre>
 
+<p>4.备份Cacti 工作目录，采用重命名方式备份；</p>
 
-<article>
-  
-<h1><a href="/salogs/blog/how-to-update-nagios/">Nagios版本升级</a></h1>
-<time datetime="2012-08-02T20:57:00+08:00" pubdate><span class='month'>Aug</span> <span class='day'>02</span> <span class='year'>2012</span></time>
+<pre><code>mv /other/web/cacti /other/web/cacti-0.8.7e
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/监控/'>监控</a></span>
-</footer>
+<p>5.重命名新安装包为Cacti；</p>
 
+<pre><code>mv /other/web/cacti-0.8.8a /other/web/cacti
+</code></pre>
 
-</article>
+<p>6.将原来的rrd文件，RRD目录复制到新版本的RRD目录；</p>
 
+<pre><code>cp -r /other/web/cacti-0.8.7e/rra /other/web/cacti/
+</code></pre>
 
+<p>7.将原来的所有脚本文件，scripts目录复制到新版本的目录scripts中；</p>
 
-<article>
-  
-<h1><a href="/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/">Ubuntu 11.10安装配置Ruby on Rails开发环境</a></h1>
-<time datetime="2012-01-07T09:46:00+08:00" pubdate><span class='month'>Jan</span> <span class='day'>07</span> <span class='year'>2012</span></time>
+<pre><code>cp -r /other/web/cacti-0.8.7e/scripts/ /other/web/cacti/scripts/
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/rails/'>Rails</a></span>
-</footer>
+<p>8.将原来的XML文件，resource目录复制到新版本中的目录resource中；</p>
 
+<pre><code>cp -r /other/web/cacti-0.8.7e/resource/  /other/web/cacti/resource/
+</code></pre>
 
-</article>
+<p>9.修改新版本RRD、LOG目录所有者；</p>
 
+<pre><code>chown -R cactiuser /other/web/cacti
+</code></pre>
 
+<p>10.打开http://ip/cacti/链接进行安装升级数据库；</p>
 
-<article>
-  
-<h1><a href="/salogs/blog/about-ssh-key-auth-and-ssh-agent/">SSH密钥代理管理应用</a></h1>
-<time datetime="2012-01-05T16:15:00+08:00" pubdate><span class='month'>Jan</span> <span class='day'>05</span> <span class='year'>2012</span></time>
+<pre><code>http://192.168.1.120/cacti/
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>linux</a>, <a class='category' href='/salogs/blog/categories/系统管理/'>系统管理</a></span>
-</footer>
-
-
-</article>
-
-
-
-  
-  <h2>2011</h2>
-
-<article>
-  
-<h1><a href="/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/">crontab导致/var分区空间爆满的问题</a></h1>
-<time datetime="2011-12-27T14:36:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>27</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/系统管理/'>系统管理</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/salogs/blog/performance-monitoring-and-analysis-tools/">Linux常用性能监控分析工具</a></h1>
-<time datetime="2011-12-19T21:54:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>19</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/性能调优/'>性能调优</a>, <a class='category' href='/salogs/blog/categories/系统管理/'>系统管理</a></span>
-</footer>
-
-
-</article>
-
+<p>11.测试；</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Yousri</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-03T13:57:00+08:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/salogs/blog/categories/linux/'>Linux</a>, <a class='category' href='/salogs/blog/categories/监控/'>监控</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://yousri.github.com/salogs/blog/how-to-update-cacti/" data-via="Yousri" data-counturl="http://yousri.github.com/salogs/blog/how-to-update-cacti/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/salogs/blog/how-to-update-nagios/" title="Previous Post: Nagios版本升级">&laquo; Nagios版本升级</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -241,7 +272,10 @@ Jan 07 2012 &hellip;">
       var disqus_shortname = 'yousri';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yousri.github.com/salogs/blog/how-to-update-cacti/';
+        var disqus_url = 'http://yousri.github.com/salogs/blog/how-to-update-cacti/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

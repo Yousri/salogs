@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 监控 | Salogs]]></title>
   <link href="http://yousri.github.com/salogs/blog/categories/监控/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2012-08-03T12:52:56+08:00</updated>
+  <updated>2012-08-03T14:05:50+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[升级Cacti版本]]></title>
+    <link href="http://yousri.github.com/salogs/blog/how-to-update-cacti/"/>
+    <updated>2012-08-03T13:57:00+08:00</updated>
+    <id>http://yousri.github.com/salogs/blog/how-to-update-cacti</id>
+    <content type="html"><![CDATA[<p>总体步骤如下：</p>
+
+<p>1.下载最新安装包，并且解压；</p>
+
+<pre><code>tar zxf cacti-0.8.8a.tar.gz
+</code></pre>
+
+<p>2.include/config.php 修改数据库信息；</p>
+
+<pre><code>vim cacti-0.8.8a/include/config.php
+</code></pre>
+
+<p>3.备份数据库；</p>
+
+<pre><code>mysqldump -ucacti -p cacti087e &gt; cacti.sql
+</code></pre>
+
+<p>4.备份Cacti 工作目录，采用重命名方式备份；</p>
+
+<pre><code>mv /other/web/cacti /other/web/cacti-0.8.7e
+</code></pre>
+
+<p>5.重命名新安装包为Cacti；</p>
+
+<pre><code>mv /other/web/cacti-0.8.8a /other/web/cacti
+</code></pre>
+
+<p>6.将原来的rrd文件，RRD目录复制到新版本的RRD目录；</p>
+
+<pre><code>cp -r /other/web/cacti-0.8.7e/rra /other/web/cacti/
+</code></pre>
+
+<p>7.将原来的所有脚本文件，scripts目录复制到新版本的目录scripts中；</p>
+
+<pre><code>cp -r /other/web/cacti-0.8.7e/scripts/ /other/web/cacti/scripts/
+</code></pre>
+
+<p>8.将原来的XML文件，resource目录复制到新版本中的目录resource中；</p>
+
+<pre><code>cp -r /other/web/cacti-0.8.7e/resource/  /other/web/cacti/resource/
+</code></pre>
+
+<p>9.修改新版本RRD、LOG目录所有者；</p>
+
+<pre><code>chown -R cactiuser /other/web/cacti
+</code></pre>
+
+<p>10.打开http://ip/cacti/链接进行安装升级数据库；</p>
+
+<pre><code>http://192.168.1.120/cacti/
+</code></pre>
+
+<p>11.测试；</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Nagios版本升级]]></title>
