@@ -1,0 +1,463 @@
+---
+layout: post
+title: "Linux常用性能监控分析工具"
+date: 2011-12-19 21:54
+comments: true
+categories: [Linux,性能调优,系统管理]
+---
+
+一、系统级别性能分析工具
+---
+
+这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如：
+
+* 借助vmstat、sar、iostat检测是否是CPU瓶颈;
+* 借助free、vmstat检测是否是内存瓶颈;
+* 借助iostat检测是否是磁盘I/O瓶颈;
+* 借助netstat检测是否是网络带宽瓶颈;
+
+<!-- more -->
+
+top
+---
+显示所有正在运行进程的详细信息及关于系统各方面如内存、CPU、负载等状态情况.   
+个人较常用到参数是：显示多cpu各个信息--按1键;  进程详细路径--按字母c键   
+
+主要参数:
+    d：指定更新的间隔，以秒计算。
+    q：没有任何延迟的更新。如果使用者有超级用户，则top命令将会以最高的优先序执行。
+    c：显示进程完整的路径与名称。
+    S：累积模式，会将己完成或消失的子行程的CPU时间累积起来。
+    s：安全模式。
+    i：不显示任何闲置(Idle)或无用(Zombie)的行程。
+    n：显示更新的次数，完成后将会退出to
+
+显示参数:
+    PID（Process ID）：进程标示号。
+    USER：进程所有者的用户名。
+    PR：进程的优先级别。
+    NI：进程的优先级别数值。
+    VIRT：进程占用的虚拟内存值。
+    RES：进程占用的物理内存值。
+    SHR：进程使用的共享内存值。
+    S：进程的状态，其中S表示休眠，R表示正在运行，Z表示僵死状态，N表示该进程优先值是负数。
+    %CPU：该进程占用的CPU使用率。
+    %MEM：该进程占用的物理内存和总内存的百分比。
+    TIME＋：该进程启动后占用的总的CPU时间。
+    Command：进程启动的启动命令名称，如果这一行显示不下，进程会有一个完整的命令行。
+
+top命令使用过程中，还可以使用一些交互的命令来完成其它参数的功能。这些命令是通过快捷键启动的。
+    <空格>：立刻刷新。
+    P：根据CPU使用大小进行排序。
+    T：根据时间、累计时间排序。
+    q：退出top命令。
+    m：切换显示内存信息。
+    t：切换显示进程和CPU状态信息。
+    c：切换显示命令名称和完整命令行。
+    M：根据使用内存大小进行排序。
+    W：将当前设置写入~/.toprc文件中。这是写top配置文件的推荐方法。
+
+ps
+---
+ps命令就是最基本同时也是非常强大的linux进程查看命令。使用该命令可以确定有哪些进程正在运行和运行的状态、进程是否结束、进程有没有僵死、哪些进程占用了过多的资源等等有关进程状态情况。   
+linux上进程有5种状态: 
+    a 运行(正在运行或在运行队列中等待) 
+    b 中断(休眠中, 受阻, 在等待某个条件的形成或接受到信号) 
+    c 不可中断(收到信号不唤醒和不可运行, 进程必须等待直到有中断发生) 
+    d 僵死(进程已终止, 但进程描述符存在, 直到父进程调用wait4()系统调用后释放) 
+    e 停止(进程收到SIGSTOP, SIGSTP, SIGTIN, SIGTOU信号后停止运行运行) 
+
+对应ps工具标识进程的5种状态码: 
+    D 不可中断 uninterruptible sleep (usually IO) 
+    R 运行 runnable (on run queue) 
+    S 中断 sleeping 
+    T 停止 traced or stopped 
+    Z 僵死 a defunct (”zombie”) process 
+
+常用参数命令选项：
+    -e 显示所有进程。
+    -f 全格式。
+    -h 不显示标题。
+    -l 长格式。
+    -w 显示加宽可以显示较多的资讯 
+    -au 显示较详细的资讯 
+    -aux 显示所有包含其他使用者的行程 
+
+输出格式及相应各值代表的含义：
+
+    USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND 
+    USER: 行程拥有者 
+    PID: pid 
+    %CPU: 占用的 CPU 使用率 
+    %MEM: 占用的记忆体使用率 
+    VSZ: 占用的虚拟记忆体大小 
+    RSS: 占用的记忆体大小 
+    TTY: 终端的次要装置号码 (minor device number of tty) 
+    STAT: 该行程的状态: 
+        D: 不可中断的静止 
+        R: 正在执行中 
+        S: 静止状态 
+        T: 暂停执行 
+        Z: 不存在但暂时无法消除 
+        W: 没有足够的记忆体分页可分配 
+        <: 高优先序的行程 
+        N: 低优先序的行程 
+        L: 有记忆体分页分配并锁在记忆体内 (即时系统或捱A I/O) 
+    START: 行程开始时间 
+    TIME: 执行的时间 
+    COMMAND:所执行的指令
+
+pstree
+---
+以树状图显示运行的程序，可以指定程序识别码或用户名称对应的运行程序关系：pstree option  [程序识别码/用户名称] 其参数如下：
+
+    -a 　显示每个程序的完整指令，包含路径，参数或是常驻服务的标示。   
+    -c 　不使用精简标示法。   
+    -G 　使用VT100终端机的列绘图字符。   
+    -h 　列出树状图时，特别标明现在执行的程序。   
+    -H   此参数的效果和指定”-h”参数类似，但特别标明指定的程序。   
+    -l 　采用长列格式显示树状图。   
+    -n 　用程序识别码排序。预设是以程序名称来排序。   
+    -p 　显示程序识别码。   
+    -u 　显示用户名称。   
+    -U 　使用UTF-8列绘图字符。    
+    -V 　显示版本信息。   
+
+free
+---
+free是监控linux内存使用状况最常用简单的指令：
+
+    [yousri@jmxc ~]$ free
+                total       used       free     shared    buffers     cached
+    Mem:      12293188   11201156    1092032          0     459200    2451612
+    -/+ buffers/cache:    8290344    4002844
+    Swap:      8193108     720552    7472556
+程序应用实际使用的内存是：-buffers/cache 即userd-buffers-cached = 8290344   
+剩余可用内存是：+buffers/cache 即free+buffers+cached = 4002844
+
+对此两点解释说明：
+    对操作系统来讲是Mem的参数.buffers/cached 都是属于被使用,所以它认为free只有1092032.
+    对应用程序来讲是(-/+ buffers/cach).buffers/cached 是等同可用的，因为buffer/cached是为了提高程序执行的性能，当程序使用内存时，buffer/cached会很快地被使用。
+
+Vmstat
+----
+[yousri@jmxc ~]$vmstat 5 5
+
+  Procs：运行及等待中的进程数
+    -r:运行的和等待(CPU时间片)运行的进程数，这个值也可以判断是否需要增加CPU(长期大于1)
+    -b:处于不可中断状态的进程数，常见的情况是由IO引起的
+  Memory：内存使用比例包括交换内存、读写缓存及应用程序的cache情况。
+    -swpd: 切换到交换内存上的内存(默认以KB为单位)
+    如果 swpd 的值不为0，或者还比较大，比如超过100M了，但是 si, so 的值长期为 0，这种情况我们可以不用担心，不会影响系统性能。
+    -free: 空闲的物理内存
+    -buff: 作为buffer cache的内存，对块设备的读写进行缓冲
+    -cache: 作为page cache的内存, 文件系统的cache
+    如果 cache 的值大的时候，说明cache住的文件数多，如果频繁访问到的文件都能被cache住，那么磁盘的读IO bi 会非常小。
+  Swap：交换内存使用情况
+    -si: 交换内存使用，由磁盘调入内存 
+    -so: 交换内存使用，由内存调入磁盘
+    内存够用的时候，这2个值都是0，如果这2个值长期大于0时，系统性能会受到影响。磁盘IO和CPU资源都会被消耗。
+我发现有些朋友看到空闲内存(free)很少或接近于0时，就认为内存不够用了，实际上不能光看这一点的，还要结合si,so，如果free很少，但是si,so也很少(大多时候是0)，那么不用担心，系统性能这时不会受到影响的。   
+
+  I/O：磁盘读写数据负载情况
+    -bi: 从块设备读入的数据总量(读磁盘) (KB/s)，
+    -bo: 写入到块设备的数据总理(写磁盘) (KB/s)
+随机磁盘读写的时候，这2个 值越大（如超出1M），能看到CPU在IO等待的值也会越大   
+
+  System：系统读写上下午切换次数情况
+    -in: 每秒产生的中断次数
+    -cs: 每秒产生的上下文切换次数
+上面这2个值越大，会看到由内核消耗的CPU时间会越多   
+
+  CPU：CPU使用情况：包括用户应用、系统本身以及I/O读写等待消耗的各个CPU消耗比例。
+    -us: 用户进程消耗的CPU时间百分比
+    us 的值比较高时，说明用户进程消耗的CPU时间多，但是如果长期超过50% 的使用，那么我们就该考虑优化程序算法或者进行加速了(比如 PHP/Perl)
+    -sy: 内核进程消耗的CPU时间百分比
+    sy 的值高时，说明系统内核消耗的CPU资源多，这并不是良性的表现，我们应该检查原因。
+    -wa: IO等待消耗的CPU时间百分比
+    wa 的值高时，说明IO等待比较严重，这可能是由于磁盘大量作随机访问造成，也有可能是磁盘的带宽出现瓶颈(块操作)。
+    -id: CPU处在空闲状态时间百分比   
+  情景分析：这个vmstat的输出那些信息值得关注？
+    -Procs r: 运行的进程比较多，系统很繁忙
+    -Io bo: 磁盘写的数据量稍大，如果是大文件的写，10M以内基本不用担心，如果是小文件写2M以内基本正常
+    Cpu us: 持续大于50，服务高峰期可以接受
+    Cpu wa: 稍微有些高
+    Cpu id:持续小于50，服务高峰期可以接受
+
+iostat
+---
+[yousri@jmxc ~]$iostat -x 5
+
+    rrqm/s: 每秒进行 merge 的读操作数目。即 delta(rmerge)/s
+    wrqm/s: 每秒进行 merge 的写操作数目。即 delta(wmerge)/s
+    r/s:    每秒完成的读 I/O 设备次数。即 delta(rio)/s
+    w/s:    每秒完成的写 I/O 设备次数。即 delta(wio)/s
+    rsec/s: 每秒读扇区数。即 delta(rsect)/s
+    wsec/s: 每秒写扇区数。即 delta(wsect)/s
+    rkB/s:  每秒读K字节数。是 rsect/s 的一半，因为每扇区大小为512字节。(需要计算)
+    wkB/s:  每秒写K字节数。是 wsect/s 的一半。(需要计算)
+    avgrq-sz:   平均每次设备I/O操作的数据大小 (扇区)。delta(rsect+wsect)/delta(rio+wio)
+    avgqu-sz:   平均I/O队列长度。即 delta(aveq)/s/1000 (因为aveq的单位为毫秒)。
+    await:      平均每次设备I/O操作的等待时间 (毫秒)。即 delta(ruse+wuse)/delta(rio+wio)
+    svctm:      平均每次设备I/O操作的服务时间 (毫秒)。即 delta(use)/delta(rio+wio)
+    %util:      一秒中有百分之多少的时间用于 I/O 操作，或者说一秒中有多少时间 I/O 队列是非空的。即 delta(use)/s/1000 (因为use的单位为毫秒)
+
+相关分析:
+    如果 %util 接近 100%，基本是产生的I/O请求太多，I/O系统已经满负荷，该磁盘可能存在瓶颈。
+    idle小于70% IO压力就较大了,一般读取速度有较多的wait。
+    同时可以结合vmstat 查看查看b参数(等待资源的进程数)和wa参数(IO等待所占用的CPU时间的百分比,高过30%时IO压力高) 
+    另外 await 的参数也要多和 svctm 来参考。差的过高就一定有 IO 的问题。 
+    avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每次操作的数据的大小，如果次数多，但数据拿的小的话，其实 IO 也会很小.如果数据拿的大，才IO 的数据会高。
+    也可以通过 avgqu-sz × ( r/s or w/s ) = rsec/s or wsec/s.也就是讲，读定速度是这个来决定的。    
+    并发请求的数量：并发= (r/s+w/s)*(svctm/1000)
+
+dstat
+---
+功能类似于SysStat，可收集到-cpu-、-disk-、-net-、－paging-、-system-等使用情况的数据，默认一秒钟收集一次。Dstat拥有一个彩色的界面，在手动观察性能状况时，数据比较显眼容易观察；而且Dstat支持即时刷新，譬如：输入 dstat 5，即每五秒收集一次，但最新的数据都会每秒刷新显示。和SysStat相同的是，Dstat也可以收集指定的性能资源。譬如 dstat -c 即显示CPU的使用情况。   
+关于dstat具体详细的参数选项大致有：
+    -c, --cpu              显示CPU情况
+    -C 0,3,total           include cpu0, cpu3 and total
+    -d, --disk             显示磁盘情况
+    -D total,hda           include hda and total
+    -g, --page             enable page stats
+    -i, --int              enable interrupt stats
+    -I 5,eth2              include int5 and interrupt used by eth2
+    -l, --load             enable load stats
+    -m, --mem              显示内存情况
+    -n, --net              显示网络情况
+    -N eth1,total          可以指定网络接口
+    -p, --proc             enable process stats
+    -s, --swap             显示swap情况
+    -S swap1,total         可以指定多个swap
+    -t, --time             enable time counter
+    -y, --sys              enable system stats
+    --ipc                  报告IPC消息队列和信号量的使用情况
+    --lock                 enable lock stats
+    --raw                  enable raw stats
+    --tcp                  enable tcp stats
+    --udp                  enable udp stats
+    --unix                 enable unix stats
+    -M stat1,stat2         enable external stats
+    --mods stat1,stat2
+    -a, --all              使用-cdngy 缺省的就是这样显示
+    -f, --full             使用 -C, -D, -I, -N and -S 显示
+    -v, --vmstat           使用-pmgdsc -D 显示
+    --integer              show integer values
+    --nocolor              disable colors (implies --noupdate)
+    --noheaders            只显示一次表头以后就不显示了,使用重定向写入文件时很有用
+    --noupdate             disable intermediate updates
+    --output file          写入到CVS文件中
+其中推荐个人比较常用的参数有：
+    dstat -tcdlmnpsy 20 #没20秒收集一次数据
+    alias dstat = 'dstat -tcdlmnpsy' #添加设置.bashrc别名功能
+
+mpstat
+---
+mpstat命令可用于监测一个多CPU系统中每个可用CPU的情况，同时也可以像vmstat命令那样使用参数进行一定频率的采样结果的监测。
+
+pmap
+---
+pmap命令可以显示进程的内存映射，可以用于找出造成内存瓶颈的原因：pmap -d pid
+
+sar
+---
+sar可视为是iostat及vmstat为一体的工具，其命令行常用格式:sar [options] [-A] [-o file] t n 注：n和t分别代表采样次数及时间间隔;-o file表示将命令行输出结果以二进制保存在文件中;options为命令行选项，常用包括有：
+    -A：所有报告的总和;
+    -u：CPU利用率;
+    -v：进程、I节点、文件和锁表状态;
+    -d：硬盘使用报告;
+    -r：没有使用的内存页面和硬盘块;
+    -g：串口I/O的情况;
+    -b：缓冲区使用情况;
+    -a：文件读写情况;
+    -c：系统调用情况;
+    -R：进程的活动情况;
+    -y：终端设备活动情况;
+    -w：系统交换活动;
+
+uptime
+---
+uptime 快捷的查看服务器运行时间、在线用户数、系统即时、每五/十五分钟的平均负载情况：
+
+    [yousri@jmxc ~]$ uptime
+     10:35:27 up 242 days, 17:07,  1 user,  load average: 0.13, 0.07, 0.01
+
+
+strace
+---
+Strace：用于跟踪进程执行时的系统调用和所接收的信号。   
+在Linux世界，进程不能直接访问硬件设备，当进程需要访问硬件设备(比如读取磁盘文件，接收网络数据等等)时，必须由用户态模式切换至内核态模式，通过系统调用访问硬件设备。strace可以跟踪到一个进程产生的系统调用,包括参数，返回值，执行消耗的时间。
+使用参数：
+    -p  跟踪指定的进程
+    -f  跟踪由fork子进程系统调用
+    -F  尝试跟踪vfork子进程系统调吸入，与-f同时出现时, vfork不被跟踪
+    -o filename 默认strace将结果输出到stdout。通过-o可以将输出写入到filename文件中
+    -ff 常与-o选项一起使用，不同进程(子进程)产生的系统调用输出到filename.PID文件
+    -r  打印每一个系统调用的相对时间
+    -t  在输出中的每一行前加上时间信息。 -tt 时间确定到微秒级。还可以使用-ttt打印相对时间
+    -v  输出所有系统调用。默认情况下，一些频繁调用的系统调用不会输出
+    -s  指定每一行输出字符串的长度,默认是32。文件名一直全部输出
+    -c  统计每种系统调用所执行的时间，调用次数，出错次数。
+    -e  expr     输出过滤器，通过表达式，可以过滤出掉你不想要输出
+
+lsof
+---
+
+
+二、网络分析定位命令工具
+---
+
+ping
+---
+
+traceroute
+---
+
+netstat
+---
+Netstat用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。   
+    netstat [-a] [-b] [-e] [-n] [-o] [-p proto] [-r] [-s] [-v] [interval]
+    -a或–all 显示所有连线中的Socket。
+    -A<网络类型>或–<网络类型> 列出该网络类型连线中的相关地址。
+    -c或–continuous 持续列出网络状态。
+    -C或–cache 显示路由器配置的快取信息。
+    -e或–extend 显示网络其他相关信息。
+    -g或–groups 显示多重广播功能群组组员名单。
+    -i或–interfaces 显示网络界面信息表单。
+    -l或–listening 显示监控中的服务器的Socket。
+    -M或–masquerade 显示伪装的网络连线。
+    -n或–numeric 直接使用IP地址，而不通过域名服务器。
+    -N或–netlink或–symbolic 显示网络硬件外围设备的符号连接名称。
+    -o或–timers 显示计时器。
+    -p或–programs 显示正在使用Socket的程序识别码和程序名称。
+    -r或–route 显示Routing Table。
+    -s或–statistice 显示网络工作信息统计表。
+    -t或–tcp 显示TCP传输协议的连线状况。
+    -u或–udp 显示UDP传输协议的连线状况。
+比较常用的参数主要有：
+    netstat -anlp
+    netstat -r
+    netstat -tnpl
+其中网络连接状态又分有多种：其是按照TCP连接建立的三次握手和TCP连接断开的四次挥手过程来描述的。   
+    1)、LISTEN:首先服务端需要打开一个socket进行监听，状态为LISTEN.
+    2)、SYN_SENT:客户端通过应用程序调用connect进行active open.于是客户端tcp发送一个SYN以请求建立一个连接.之后状态置为SYN_SENT.
+    3)、SYN_RECV:服务端应发出ACK确认客户端的 SYN,同时自己向客户端发送一个SYN. 之后状态置为SYN_RECV
+    4)、ESTABLISHED: 代表一个打开的连接，双方可以进行或已经在数据交互了。
+    5)、FIN_WAIT1:主动关闭(active close)端应用程序调用close，于是其TCP发出FIN请求主动关闭连接，之后进入FIN_WAIT1状态.
+    6)、CLOSE_WAIT:被动关闭(passive close)端TCP接到FIN后，就发出ACK以回应FIN请求(它的接收也作为文件结束符传递给上层应用程序),并进入CLOSE_WAIT.
+    7)、FIN_WAIT2:主动关闭端接到ACK后，就进入了 FIN-WAIT-2.
+    8)、LAST_ACK:被动关闭端一段时间后，接收到文件结束符的应用程序将调用CLOSE关闭连接。这导致它的TCP也发送一个 FIN,等待对方的ACK.就进入了LAST-ACK .
+    9)、TIME_WAIT:在主动关闭端接收到FIN后，TCP 就发送ACK包，并进入TIME-WAIT状态。
+    10)、CLOSING: 比较少见.
+    11)、CLOSED: 被动关闭端在接受到ACK包后，就进入了closed的状态。连接结束.
+    12)、UNKNOWN: 未知的Socket状态。
+
+日常维护过程中涉及到查看系统连接状态情况的几个常用命令：
+
+    服务TCP连接状态：netstat -nat|awk '{print $6}|sort|uniq -c|sort -rn
+    查找请求数前20个IP（攻击源判断）：netstat -antlp|grep 80|awk '{print $5}'|awk -F: '{print $1}'|sort|uniq -c|sort -nr|head -n20
+    查看程序(php-cgi)连接数：netstat -anpo|grep php-cgi|wc -l
+
+mtr
+---
+最初通常只是使用ping判断网络丢包情况，再结合traceroute跟踪路由走向，直到后来才发现原来linux下有个更好的具备这两者功能的网络分析判断工具，可以说是结合了ping/nslookup/traceroute为一体来判断网络的相关特性，它即是mtr。最常用到的参数为：
+    mtr -n -r -c 15 ip
+    -n no-dns 不对ip地址做域名解析
+    -r 已报告模式显示
+    -c 设置每秒发送数据包数量
+结果总共包括八列数据分别是：
+    第一列：ip或域名;
+    第二列：设置每秒发送数据包的数量;
+    第三列：显示每个对应ip的丢包率;
+    第四列：显示最近一次的返回时延;
+    第五列：发送ping包的平均时延;
+    第六列：时延最短的时间;
+    第七列：时延最长的时间;
+    第八列：标准偏差;
+
+NC
+---
+nc全程`NetCat` 号称是网络工具中的“瑞士军刀”   
+通用方法:   
+想要连接到某处: nc [-options] hostname port[s] [ports] …   
+绑定端口等待连接: nc -l -p port [-options] [hostname] [port]   
+参数:
+    -g gateway source-routing hop point[s], up to 8
+    -G num source-routing pointer: 4, 8, 12, …
+    -h 帮助信息
+    -i secs 延时的间隔
+    -l 监听模式，用于入站连接
+    -n 指定数字的IP地址，不能用hostname
+    -o file 记录16进制的传输
+    -p port 本地端口号
+    -r 任意指定本地及远程端口
+    -s addr 本地源地址
+    -u UDP模式
+    -v 详细输出——用两个-v可得到更详细的内容
+    -w secs timeout的时间
+    -z 将输入输出关掉——用于扫描时，其中端口号可以指定一个或者用lo-hi式的指定范围。
+
+常用用途：远程拷贝数据、端口扫描 如：
+    nc -v -w 2 ip -z 21-1024   #端口扫描
+    nc -l 8888 > tmp.log #ip:192.168.1.100上执行
+    nc 192.168.1.100 8888 < tmp.log #拷贝
+
+nmap
+---
+http://xukaizijian.blog.163.com/blog/static/1704331192011011101745336/
+
+三、Mysql性能瓶颈分析定位工具命令
+---
+
+show full processlist
+---
+
+show slow puery
+---
+
+Explain
+---
+Explain Select ....   
+执行后包含的信息:ID、Select_type、Table、Type、Possible_keys、Key、Key_len、Ref、Rows、Extra   
+Select_type：表示查询每个select子句的类型（简单或复杂）
+    SIMPLE:查询中不包含子查询或union;
+    PRIMARY:查询中若包含任何复杂的子部分;
+    SUBQUERY:在select或where列表中包含子查询;
+    DERIVED:在from列表中包含子查询;
+    UNION
+    UNION RESULT
+
+Type: 表示Mysql在表中找到所需行的方式，又称“访问类型”，常见类型由差到优依次如下：ALL  index  range  ref  eq_ref  const,system  NULL
+    ALL:Full Table Scan   Mysql需遍历全表找到匹配的行;
+    index:Full index Scan index与all的区别在于其只遍历索引查询（使用到索引）;
+    range: 索引范围扫描，对索引的扫描开始于某一点，返回匹配值域的行，常见于between/</>等的查询;
+    ref: 非唯一索引扫描，返回匹配某个单独值的所有行。常见于使用非唯一索引即唯一索引的非唯一前缀进行的查找;
+    eq_ref: 唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键或唯一索引扫描;
+    const,system: 当mysql对查询某部分进行优化，并转换为一个常量时，使用这些类型访问。如将主键置于where列表中。
+    NULL: Mysql在优化过程中分解语句，执行时甚至不用访问表或索引;
+
+Possible_keys：指出Mysql能使用哪个索引在表中找到行，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用   
+Key：显示Mysql在查询中实际使用的索引，若没有使用索引，显示为NULL   
+Key_len：表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度   
+Ref：表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值   
+Rows：表示Mysql根据表统计信息及索引选用情况估算的找到所需的记录所需要读取的行数   
+Extra：包含不适合在其他列中显示但十分重要的额外信息
+    Using index 表示相应的select操作中使用了覆盖索引
+    Using Where 
+    Using temporary 表示Mysql需要使用临时表来存储结果集，常见于排序或分组查询
+    Using filesort 表示Mysql中无法利用索引完成的排序操作即“文件排序”
+
+Set Profiles
+---
+Mysql的Query Profiler 是一个使用方便的Query诊断分析工具，可以获取一条Query在整个执行过程中多种资源的消耗情况，如：CPU、IO、SWAP等，同时还能得到该Query执行过程Mysql所调用的各个函数在源文件中的文件。用法如下：   
+此是用户变量，需要时需每次开启profiles功能
+    mysql> set profiling=1;
+    mysql> show profiles;
+    mysql> show profile for query 2;
+    mysql> show profile cpu for query 2;
+    或
+    mysql> show profile cpu,block io,memory,swaps for query 2;
+
+mysqlreport
+---
+

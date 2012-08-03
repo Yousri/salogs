@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 group :development do
-  gem 'rake'
+#  gem 'rake'
   gem 'rack'
   gem 'jekyll'
   gem 'rdiscount'
@@ -16,3 +16,4 @@ group :development do
 end
 
 gem 'sinatra', '1.2.6'
+gem 'rake', '0.9.2.2'
