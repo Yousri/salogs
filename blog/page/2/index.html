@@ -9,10 +9,7 @@
   <meta name="author" content="Yousri">
 
   
-  <meta name="description" content="一、系统级别性能分析工具 这里主要是包括CPU、内存、磁盘I/O以及网络带宽常用的检测分析工具，如： 借助vmstat、sar、iostat检测是否是CPU瓶颈;
-借助free、vmstat检测是否是内存瓶颈;
-借助iostat检测是否是磁盘I/O瓶颈;
-借助netstat检测是否是网络带宽瓶颈; ">
+  <meta name="description" content="最近清理磁盘空间时发现/var空间使用异常且节点inode数偏大即文件数(几百K甚至上M）。du -sh目录层层逐一查下去看的时候，发现/var/spool/clientmqueue这个目录，里面文件有好几十w甚至上百w个。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +65,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/">Crontab导致/var分区空间爆满的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-27T14:36:00+08:00" pubdate data-updated="true">Dec 27<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近清理磁盘空间时发现/var空间使用异常且节点inode数偏大即文件数(几百K甚至上M）。du -sh目录层层逐一查下去看的时候，发现/var/spool/clientmqueue这个目录，里面文件有好几十w甚至上百w个。随手Google下才了解这个问题的原因是crontab的一些计划任务中产生了大量日志信息。这些日志信息没有导入到/dev/null或者指定的文件。结果就产生了目录下的这些文件。本来这些文件要作为mail发出去的，而因为sendmail服务先前就已经关闭的，积留在这里了。故crontab的计划任务最好全部写成这个样子：</p>
+
+<pre><code>30 3 * * * sh /root/cron/dbbackup.sh  &gt;/dev/null 2&gt;&amp;1   
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -135,6 +176,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/salogs/blog/records-about-hadoop-and-hbase-zookeeper/">一些关于HBase及Zookeeper的运维记录</a>
+      </li>
+    
+      <li class="post">
         <a href="/salogs/blog/how-to-update-cacti/">升级Cacti版本</a>
       </li>
     
@@ -148,10 +193,6 @@
     
       <li class="post">
         <a href="/salogs/blog/about-ssh-key-auth-and-ssh-agent/">SSH密钥代理管理应用</a>
-      </li>
-    
-      <li class="post">
-        <a href="/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/">crontab导致/var分区空间爆满的问题</a>
       </li>
     
   </ul>
