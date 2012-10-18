@@ -4,7 +4,7 @@
   <title><![CDATA[Salogs]]></title>
   <link href="http://yousri.github.com/salogs/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2012-08-23T23:20:00+08:00</updated>
+  <updated>2012-10-18T20:27:39+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Performance and Tuning Guidelines 中文版]]></title>
+    <link href="http://yousri.github.com/salogs/blog/linux-performance-and-tuning-guidelines/"/>
+    <updated>2012-10-18T18:18:00+08:00</updated>
+    <id>http://yousri.github.com/salogs/blog/linux-performance-and-tuning-guidelines</id>
+    <content type="html"><![CDATA[<p>原版：http://www.redbooks.ibm.com/abstracts/redp4285.html</p>
+
+<p>中文版：http://hi.baidu.com/imlidapeng/item/87b0f8d2173ce18f6cce3f70</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[一些关于HBase及Zookeeper的运维记录]]></title>

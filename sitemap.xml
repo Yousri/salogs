@@ -2,44 +2,48 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://yousri.github.com/salogs/blog/performance-monitoring-and-analysis-tools/</loc>
-        <lastmod>2012-05-09T21:40:41+08:00</lastmod>
+        <lastmod>2012-10-14T18:52:45+08:00</lastmod>
     </url>
     <url>
         <loc>
             http://yousri.github.com/salogs/blog/the-problem-about-var-partition-take-up-lost-of-space-by-crontab/
         </loc>
-        <lastmod>2012-05-09T21:40:41+08:00</lastmod>
+        <lastmod>2012-10-14T18:52:45+08:00</lastmod>
     </url>
     <url>
         <loc>http://yousri.github.com/salogs/blog/about-ssh-key-auth-and-ssh-agent/</loc>
-        <lastmod>2012-05-09T21:40:41+08:00</lastmod>
+        <lastmod>2012-10-14T18:52:45+08:00</lastmod>
     </url>
     <url>
         <loc>http://yousri.github.com/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/</loc>
-        <lastmod>2012-05-09T21:40:41+08:00</lastmod>
+        <lastmod>2012-10-14T18:52:45+08:00</lastmod>
     </url>
     <url>
         <loc>http://yousri.github.com/salogs/blog/how-to-update-nagios/</loc>
-        <lastmod>2012-08-03T12:52:41+08:00</lastmod>
+        <lastmod>2012-10-14T18:52:45+08:00</lastmod>
     </url>
     <url>
         <loc>http://yousri.github.com/salogs/blog/how-to-update-cacti/</loc>
-        <lastmod>2012-08-03T14:18:42+08:00</lastmod>
+        <lastmod>2012-10-14T18:52:45+08:00</lastmod>
     </url>
     <url>
         <loc>http://yousri.github.com/salogs/blog/records-about-hadoop-and-hbase-zookeeper/</loc>
-        <lastmod>2012-08-23T23:16:28+08:00</lastmod>
+        <lastmod>2012-10-14T18:52:45+08:00</lastmod>
     </url>
     <url>
-        <loc>http://yousri.github.com/salogs/</loc>
-        <lastmod>2012-08-23T23:16:28+08:00</lastmod>
+        <loc>http://yousri.github.com/salogs/blog/linux-performance-and-tuning-guidelines/</loc>
+        <lastmod>2012-10-18T20:27:20+08:00</lastmod>
     </url>
     <url>
         <loc>http://yousri.github.com/salogs/about/</loc>
-        <lastmod>2012-05-09T21:40:41+08:00</lastmod>
+        <lastmod>2012-10-14T18:52:45+08:00</lastmod>
     </url>
     <url>
         <loc>http://yousri.github.com/salogs/blog/archives/</loc>
-        <lastmod>2012-08-23T23:16:28+08:00</lastmod>
+        <lastmod>2012-10-18T20:27:20+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://yousri.github.com/salogs/</loc>
+        <lastmod>2012-10-18T20:27:20+08:00</lastmod>
     </url>
 </urlset>
