@@ -4,7 +4,7 @@
   <title><![CDATA[Salogs]]></title>
   <link href="http://yousri.github.com/salogs/atom.xml" rel="self"/>
   <link href="http://yousri.github.com/salogs/"/>
-  <updated>2012-10-28T14:44:27+08:00</updated>
+  <updated>2012-10-28T14:46:56+08:00</updated>
   <id>http://yousri.github.com/salogs/</id>
   <author>
     <name><![CDATA[Yousri]]></name>
@@ -27,34 +27,39 @@
 
 <p>1.修改配置$HOME/.ssh/config让你生活更简单（省心省事）</p>
 
-<p>通常默认情况我们使用以下方式ssh连接：
-<code>
-$ssh username@hostname/ip -p port
-</code>
-机器一多的话每次都要输入一串便会令人感觉繁琐，如果再加上实现没有使用ssh-copy-id功能采用公密钥认证方式登陆的话，每次都还要手动输入密码的话就更浪费时间。</p>
+<p>通常默认情况我们使用以下方式ssh连接：</p>
 
-<p>改善后，很多人或许会想到结合$HOME/.bashrc的别名alias功能，在此配置文件添加相应的别名如下：
-<code>
-alias name='ssh username@hostname/ip -p port'
-</code>
-其实这里如果知道<code>ssh_config</code>这东西的话，可以直接修改$HOME/.ssh/config如下:
-<code>
-host name
+<pre><code>$ssh username@hostname/ip -p port
+</code></pre>
+
+<p>机器一多的话每次都要输入一串便会令人感觉繁琐，如果再加上实现没有使用ssh-copy-id功能采用公密钥认证方式登陆的话，每次都还要手动输入密码的话就更浪费时间。</p>
+
+<p>改善后，很多人或许会想到结合$HOME/.bashrc的别名alias功能，在此配置文件添加相应的别名如下：</p>
+
+<pre><code>alias name='ssh username@hostname/ip -p port'
+</code></pre>
+
+<p>其实这里如果知道<code>ssh_config</code>这东西的话，可以直接修改$HOME/.ssh/config如下:</p>
+
+<pre><code>host name
 hostname hostip
 user username
 port port
-</code>
-如此一来，你只需要使用命令<code>ssh name</code>连接管理。或许你也发现这样一来ssh还是需要每次重复输入，是的，所以可以结合前面的$HOME/.bashrc别名进一步处理。</p>
+</code></pre>
 
-<p>单独创建一个ssh连接的别名文件为：$HOME/.ssh/bashrc 内容类似于：
-<code>
-alias name='ssh name'
-</code>
-然后将此文件加载到用户目录下的bashrc配置文件结尾，编辑$HOME/.bashrc后，执行source $HOME/.bashrc使其生效：
-<code>
-source $HOME/.ssh/bashrc
-</code>
-这样以后就只需输入相应的name（如个人这里取地区名称简写加ip末尾为name）回车执行即可。</p>
+<p>如此一来，你只需要使用命令<code>ssh name</code>连接管理。或许你也发现这样一来ssh还是需要每次重复输入，是的，所以可以结合前面的$HOME/.bashrc别名进一步处理。</p>
+
+<p>单独创建一个ssh连接的别名文件为：$HOME/.ssh/bashrc 内容类似于：</p>
+
+<pre><code>alias name='ssh name'
+</code></pre>
+
+<p>然后将此文件加载到用户目录下的bashrc配置文件结尾，编辑$HOME/.bashrc后，执行source $HOME/.bashrc使其生效：</p>
+
+<pre><code>source $HOME/.ssh/bashrc
+</code></pre>
+
+<p>这样以后就只需输入相应的name（如个人这里取地区名称简写加ip末尾为name）回车执行即可。</p>
 
 <p>2.再结合一些小工具如tmux/screen的可以更方便管理操作</p>
 
