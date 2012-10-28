@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>how to keep simple stupid with ssh tmux and terminator config file - Salogs</title>
+  <title>How to Keep Simple with SSH tmux and Terminator config file - Salogs</title>
   <meta name="author" content="Yousri">
 
   
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">How to Keep Simple Stupid With Ssh Tmux and Terminator Config File</h1>
+      <h1 class="entry-title">How to Keep Simple With SSH Tmux and Terminator Config File</h1>
     
     
       <p class="meta">
@@ -100,47 +100,50 @@
 
 <p>1.修改配置$HOME/.ssh/config让你生活更简单（省心省事）</p>
 
-<p>通常默认情况我们使用以下方式ssh连接：</p>
+<p>通常默认情况我们使用以下方式ssh连接：
+<code></p>
 
-<pre><code>&lt;code&gt;
-    $ssh username@hostname/ip -p port
-&lt;/cod&gt;
+<pre><code>$ssh username@hostname/ip -p port
 </code></pre>
+
+<p></code></p>
 
 <p>机器一多的话每次都要输入一串便会令人感觉繁琐，如果再加上实现没有使用ssh-copy-id功能采用公密钥认证方式登陆的话，每次都还要手动输入密码的话就更浪费时间。</p>
 
-<p>改善后，很多人或许会想到结合$HOME/.bashrc的别名alias功能，在此配置文件添加相应的别名如下：</p>
+<p>改善后，很多人或许会想到结合$HOME/.bashrc的别名alias功能，在此配置文件添加相应的别名如下：
+<code></p>
 
-<pre><code>&lt;code&gt;
-    alias name='ssh username@hostname/ip -p port'
-&lt;/code&gt;
+<pre><code>alias name='ssh username@hostname/ip -p port'
 </code></pre>
 
-<p>其实这里如果知道<code>ssh_config</code>这东西的话，可以直接修改$HOME/.ssh/config如下:</p>
+<p></code></p>
 
-<pre><code>&lt;code&gt;
-    host name
-    hostname hostip
-    user username
-    port port
-&lt;/code&gt;
+<p>其实这里如果知道<code>ssh_config</code>这东西的话，可以直接修改$HOME/.ssh/config如下:
+<code></p>
+
+<pre><code>host name
+hostname hostip
+user username
+port port
 </code></pre>
 
-<p>如此一来，你只需要使用命令<code>ssh name</code>连接管理。或许你也发现这样一来ssh还是需要每次重复输入，是的，所以可以结合前面的$HOME/.bashrc别名进一步处理。</p>
+<p></code>
+如此一来，你只需要使用命令<code>ssh name</code>连接管理。或许你也发现这样一来ssh还是需要每次重复输入，是的，所以可以结合前面的$HOME/.bashrc别名进一步处理。</p>
 
-<p>单独创建一个ssh连接的别名文件为：$HOME/.ssh/bashrc 内容类似于：</p>
+<p>单独创建一个ssh连接的别名文件为：$HOME/.ssh/bashrc 内容类似于：
+<code></p>
 
-<pre><code>&lt;code&gt;
-    alias name='ssh name'
- &lt;/code&gt;
+<pre><code>alias name='ssh name'
 </code></pre>
 
-<p>然后将此文件加载到用户目录下的bashrc配置文件结尾，编辑$HOME/.bashrc后，执行source $HOME/.bashrc使其生效：</p>
+<p></code>
+然后将此文件加载到用户目录下的bashrc配置文件结尾，编辑$HOME/.bashrc后，执行source $HOME/.bashrc使其生效：
+<code></p>
 
-<pre><code>&lt;code&gt;
-    source $HOME/.ssh/bashrc
-&lt;/code&gt;
+<pre><code>source $HOME/.ssh/bashrc
 </code></pre>
+
+<p></code></p>
 
 <p>这样以后就只需输入相应的name（如个人这里取地区名称简写加ip末尾为name）回车执行即可。</p>
 
@@ -218,7 +221,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/salogs/blog/how-to-keep-it-simple-stupid-with-ssh-tmux-terminator-config-file/">how to keep simple stupid with ssh tmux and terminator config file</a>
+        <a href="/salogs/blog/how-to-keep-it-simple-stupid-with-ssh-tmux-terminator-config-file/">How to Keep Simple with SSH tmux and Terminator config file</a>
       </li>
     
       <li class="post">
