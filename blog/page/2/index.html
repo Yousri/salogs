@@ -9,7 +9,7 @@
   <meta name="author" content="Yousri">
 
   
-  <meta name="description" content="对于ssh公密钥认证免密码设置想必基本都比较熟悉不够，详见：SSH Without a Password 但这里想记录的是关于日常使用过程中遇到些小麻烦所延伸的问题，因为通常会设置此认证方式原因莫过于一、安全考虑;二、服务器量多管理操作方便等原因。情况大致是，本地机器local，分别有服务器： &hellip;">
+  <meta name="description" content="1.初始系统安装开发包 $ sudo apt-get install build-essential 2.安装RVM $ bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,68 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/">Ubuntu 11.10安装配置Ruby on Rails开发环境</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-07T09:46:00+08:00" pubdate data-updated="true">Jan 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>1.初始系统安装开发包</p>
+
+<pre><code>$ sudo apt-get install build-essential
+</code></pre>
+
+<p>2.安装RVM</p>
+
+<pre><code>$ bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+</code></pre>
+
+<p>测试查看是否已经安装成功:</p>
+
+<pre><code>$ rvm -v
+rvm 1.10.1 by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.beginrescueend.com/]
+</code></pre>
+
+<p>修改用户bash相应配置文件~/.bashrc，确保每次用户登录时RVM脚本都会载入</p>
+
+<pre><code>$ vim ~/.bashrc
+[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" #增加此行
+$ source ~/.bashrc  
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -232,6 +294,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/salogs/blog/how-to-keep-it-simple-stupid-with-ssh-tmux-terminator-config-file/">how to keep simple stupid with ssh tmux and terminator config file</a>
+      </li>
+    
+      <li class="post">
         <a href="/salogs/blog/linux-performance-and-tuning-guidelines/">Linux Performance and Tuning Guidelines 中文版</a>
       </li>
     
@@ -245,10 +311,6 @@
     
       <li class="post">
         <a href="/salogs/blog/how-to-update-nagios/">Nagios版本升级</a>
-      </li>
-    
-      <li class="post">
-        <a href="/salogs/blog/how-to-install-ruby-on-rails-in-ubuntu/">Ubuntu 11.10安装配置Ruby on Rails开发环境</a>
       </li>
     
   </ul>
